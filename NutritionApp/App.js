@@ -1,21 +1,34 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { 
+  StyleSheet,
+  Text, 
+  View,
+  KeyboardAvoidingView,
+  Image,
+} from 'react-native';
 
+import Form from './app-front/components/Form.js';
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
+      <KeyboardAvoidingView behavior='padding' style={styles.wrapper}>
+        <Text style={styles.header}> Sign in </Text>
+        <Form />
+      </KeyboardAvoidingView>
+      
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
+  header: {
+    marginTop: 20,
+    fontSize: 38,
+    color: '#042049',
+    fontWeight: 'bold',
+    marginBottom: 50,
+  }
 });
