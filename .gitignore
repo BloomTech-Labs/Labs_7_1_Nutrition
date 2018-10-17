@@ -1,0 +1,9 @@
+_Store
+.vscode
+# db.sqlite3
+
+psql.sh
+
+# Environments
+.env
+
