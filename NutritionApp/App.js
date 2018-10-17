@@ -15,7 +15,6 @@ export default class App extends React.Component {
         <Text style={styles.header}> Sign in </Text>
         <Form />
       </KeyboardAvoidingView>
-      
     );
   }
 }
