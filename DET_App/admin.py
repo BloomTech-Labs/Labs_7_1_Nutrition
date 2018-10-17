@@ -5,11 +5,8 @@ from .models import (
 
 # Register your models here.
 
-class RecipeAdmin(admin.ModelAdmin):
+class DET_AppAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'last_modified')
 
 
-admin.site.register(
-    (Recipe, NutritionInfo, Ingredients),
-    RecipeAdmin
-)
+admin.site.register((Recipe, NutritionInfo, Ingredients), DET_AppAdmin)
