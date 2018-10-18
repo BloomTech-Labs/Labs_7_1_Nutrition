@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'https://dont-eat-that.herokuapp.com/admin']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'dont-eat-that.herokuapp.com']
 
 
 
