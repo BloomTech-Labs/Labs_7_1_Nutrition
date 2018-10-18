@@ -8,6 +8,8 @@ python-decouple = "*"
 django-cors-headers = "*"
 djangorestframework = "*"
 Django = "*"
+dj-database-url = "*"
+gunicorn = "*"
 
 [dev-packages]
 
