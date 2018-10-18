@@ -1,1 +1,1 @@
-web: gunicorn dont-eat-that.wsgi —-log-file -
+web: gunicorn dont-eat-that.wsgi --log-file -
