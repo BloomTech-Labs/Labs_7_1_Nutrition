@@ -37,15 +37,15 @@ ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'dont-eat-that.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.sites',
     'corsheaders',
+    'DET_App',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'DET_App',
     'rest_framework',
     'rest_framework.authtoken',
 ]
