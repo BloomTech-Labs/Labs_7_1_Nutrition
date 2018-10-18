@@ -28,6 +28,8 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+SITE_ID = 1
+
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'dont-eat-that.herokuapp.com']
 
 
