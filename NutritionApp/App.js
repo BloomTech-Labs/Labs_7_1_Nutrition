@@ -12,7 +12,7 @@ export default class App extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.wrapper}>
-        <Text style={styles.header}> Sign in </Text>
+        <Text style={styles.header}> Sign in here </Text>
         <Form />
       </KeyboardAvoidingView>
     );
