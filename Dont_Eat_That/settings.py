@@ -26,9 +26,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-SITE_ID = 1
+
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'dont-eat-that.herokuapp.com']
 
@@ -80,6 +80,8 @@ TEMPLATES = [
         },
     },
 ]
+
+SITE_ID = 1
 
 WSGI_APPLICATION = 'Dont_Eat_That.wsgi.application'
 
