@@ -26,11 +26,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', cast = bool)
 
-
-
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'dont-eat-that.herokuapp.com']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
 
 
 
@@ -81,7 +79,6 @@ TEMPLATES = [
     },
 ]
 
-SITE_ID = 1
 
 WSGI_APPLICATION = 'Dont_Eat_That.wsgi.application'
 
@@ -89,19 +86,24 @@ WSGI_APPLICATION = 'Dont_Eat_That.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'dont_eat_that',
+#         'USER': os.environ.get('DB_USER', ''),
+#         'PASSWORD': '4MzX!sFy',
+#         'HOST': 'localhost',
+#         'PORT':
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dont_eat_that',
-        'USER': os.environ.get('DB_USER', ''),
-        'PASSWORD': '4MzX!sFy',
-        'HOST': 'localhost',
-    }
+    'default': dj_database_url.config('DATABASE_URL', default='sqlite:///db.sqlite3')
 }
 
-# for dj_database_url
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+# # for dj_database_url
+# db_from_env = dj_database_url.config()
+# DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -162,3 +164,6 @@ STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+# SITE ID
+SITE_ID = 1
