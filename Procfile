@@ -1,1 +1,1 @@
-web: gunicorn sampledeploy.wsgi —-log-file -
+web: gunicorn Dont_Eat_That.wsgi --log-file -

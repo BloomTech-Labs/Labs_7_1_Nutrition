@@ -26,9 +26,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast = bool)
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1' ,'dont-eat-that.herokuapp.com']
 
 
 
@@ -36,15 +36,16 @@ ALLOWED_HOSTS = ['0.0.0.0', 'localhost']
 
 INSTALLED_APPS = [
     'corsheaders',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
     'DET_App',
     'rest_framework',
     'rest_framework.authtoken',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sites',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Dont_Eat_That.urls'
@@ -77,22 +79,31 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'Dont_Eat_That.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'dont_eat_that',
+#         'USER': os.environ.get('DB_USER', ''),
+#         'PASSWORD': '4MzX!sFy',
+#         'HOST': 'localhost',
+#         'PORT':
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config('DATABASE_URL', default='sqlite:///db.sqlite3')
 }
 
-# for dj_database_url
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+# # for dj_database_url
+# db_from_env = dj_database_url.config()
+# DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -115,18 +126,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Rest Framework boilerplate to set up permissions:
 # Allow read/write permissions for logged in users and read only for anonymous users
 
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
-
+# from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    ],
+    
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
-    ),
-    
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-    ]
+    )
 }
 
 # Internationalization
@@ -150,5 +160,9 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 CORS_ORIGIN_ALLOW_ALL = True
 
+# SITE ID
+SITE_ID = 1
