@@ -5,7 +5,19 @@
     "slug": "NutritionApp",
     "privacy": "public",
     "sdkVersion": "30.0.0",
-    "platforms": ["ios", "android"],
+    "ios": {
+      "bundleIdentifier": "com.yourcompany.yourappname",
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.lambda.detapp",
+      "versionCode": 1,
+      "permissions": []
+    },
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,9 +31,6 @@
     },
     "assetBundlePatterns": [
       "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    }
+    ]
   }
 }

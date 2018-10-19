@@ -23,7 +23,7 @@ export default class Form extends React.Component {
           style={styles.textInput}/>
 
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.btnText}> Sign in </Text>
+          <Text style={styles.btnText}> Sign in here </Text>
         </TouchableOpacity> 
       </View>
     );
