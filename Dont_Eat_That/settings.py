@@ -92,9 +92,9 @@ WSGI_APPLICATION = 'Dont_Eat_That.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DB_NAME', ''),
+        'NAME': 'dont_eat_that',
         'USER': os.environ.get('DB_USER', ''),
-        'PASSWORD': os.environ.get('DB_PASS', ''),
+        'PASSWORD': '4MzX!sFy',
         'HOST': 'localhost',
     }
 }
@@ -162,4 +162,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CORS_ORIGIN_ALLOW_ALL = True
-
