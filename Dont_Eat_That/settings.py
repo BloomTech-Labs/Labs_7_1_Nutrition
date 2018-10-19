@@ -30,7 +30,7 @@ DEBUG = False
 
 
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'https://dont-eat-that.herokuapp.com/']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'dont-eat-that.herokuapp.com']
 
 
 
