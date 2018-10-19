@@ -7,13 +7,13 @@ import {
   Image,
 } from 'react-native';
 
-import Form from './app-front/components/Form.js';
+import SignIn from './app-front/components/authentication/signin.js';
 export default class App extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.wrapper}>
         <Text style={styles.header}> Sign in </Text>
-        <Form />
+        <SignIn />
       </KeyboardAvoidingView>
     );
   }
