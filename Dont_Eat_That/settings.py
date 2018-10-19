@@ -30,15 +30,15 @@ DEBUG = False
 
 
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'dont-eat-that.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'https://dont-eat-that.herokuapp.com/']
 
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.sites',
     'corsheaders',
+    'django.contrib.sites',
     'DET_App',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -157,7 +157,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
