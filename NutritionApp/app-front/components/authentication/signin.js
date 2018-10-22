@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import Button from '../common/button.js';
-import Myreviews from './myreviews.js';
+import Myreviews from './myrecipe.js';
 
 export default class SignIn extends React.Component {
   constructor(props) {

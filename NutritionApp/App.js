@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import SignIn from './app-front/components/authentication/signin.js';
+import Myrecipe from './app-front/components/authentication/myrecipe.js';
 export default class App extends React.Component {
   render() {
     return (
