@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import Button from '../common/button.js';
-import Myreviews from './myreviews.js';
+import Myrecipe from './myrecipe.js';
 
 export default class SignIn extends React.Component {
   constructor(props) {
@@ -84,12 +84,6 @@ export default class SignIn extends React.Component {
     });
     Keyboard.dismiss();
   }
-    
-     //<Myreviews username={this.props.username}/>
-    
-    // console.log(this.props.username);
-    // Keyboard.dismiss();
-  //}
 }
 
 const styles = StyleSheet.create({
