@@ -1,8 +1,17 @@
 # Labs_7_1_Nutritions
-*Frontend*
+*Frontend *
+    REACT NATIVE 
+    React Native elements
+    React Navigation
 
-*Backend*
-Python /Django
+Deployed: 
 
-*WebServices*
-REST API
+*Backend *
+    Python /Django
+    Heroku
+
+Deployed: https://dont-eat-that.herokuapp.com/admin
+
+*WebServices *
+    REST API
+
