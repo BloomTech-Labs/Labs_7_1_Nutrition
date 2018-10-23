@@ -6,13 +6,18 @@ import {
   KeyboardAvoidingView,
   Image,
 } from 'react-native';
+import { Header } from 'react-native-elements';
 
 import Form from './app-front/components/Form.js';
 export default class App extends React.Component {
   render() {
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.wrapper}>
-        <Text style={styles.header}> Sign in here </Text>
+      <Header
+      leftComponent={{ icon: 'menu', color: '#fff' }}
+      centerComponent={{ text: 'DONT EAT THAT', style: { color: '#fff' } }}
+      rightComponent={{ icon: 'home', color: '#fff' }}
+    />
         <Form />
       </KeyboardAvoidingView>
     );
