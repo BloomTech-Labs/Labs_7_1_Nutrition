@@ -7,3 +7,5 @@ psql.sh
 # Environments
 .env
 
+# coverage test results
+.coverage

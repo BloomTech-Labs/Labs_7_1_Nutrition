@@ -17,7 +17,9 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework.authtoken import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    re_path(r'^RecipeList/', include('DET_App.urls')),
     # re_path('api-token-auth/', views.obtain_auth_token),
 ]
