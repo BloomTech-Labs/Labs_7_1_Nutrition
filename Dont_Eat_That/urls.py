@@ -18,15 +18,17 @@ from django.urls import path, include, re_path
 from rest_framework.authtoken import views
 
 from rest_framework import routers
-from DET_App.api import RecipeViewSet
+from DET_App.api import RecipeViewSet, IngredientsViewSet, NutritionInfoViewSet, UserRecipeViewSet
 
 # To add route, We register it here with the 'r' <- regex and we will not need to add them to urlpatterns
 router = routers.DefaultRouter()
 router.register(r'recipe', RecipeViewSet)
-router.register(r'ingredients', RecipeViewSet)
-router.register(r'nutritionInfo', RecipeViewSet)
+router.register(r'ingredients', IngredientsViewSet)
+router.register(r'nutritionInfo', NutritionInfoViewSet)
+router.register(r'UserRecipe', UserRecipeViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api-token-auth/',views.obtain_auth_token),
 ]

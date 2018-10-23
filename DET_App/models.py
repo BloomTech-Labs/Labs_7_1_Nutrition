@@ -63,7 +63,7 @@ class Ingredients(models.Model):
         verbose_name_plural = 'ingredients'
 
 class UserRecipe(Recipe):
-    User = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 # editable when we discuss how the user accounts will look. For now it gives recipe's for each user
 
