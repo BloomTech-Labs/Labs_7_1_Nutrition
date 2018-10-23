@@ -13,6 +13,7 @@ gunicorn = "*"
 "psycopg2-binary" = "*"
 "psycopg2" = "*"
 whitenoise = "*"
+djangorestframework-jwt = "*"
 
 [dev-packages]
 coverage = "*"

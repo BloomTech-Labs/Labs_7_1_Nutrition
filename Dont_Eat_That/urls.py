@@ -18,7 +18,7 @@ from django.urls import path, include, re_path
 from rest_framework.authtoken import views
 
 from rest_framework import routers
-from DET_App.api import RecipeViewSet, IngredientsViewSet, NutritionInfoViewSet, UserRecipeViewSet
+from DET_App.api import RecipeViewSet, IngredientsViewSet, NutritionInfoViewSet
 
 # To add route, We register it here with the 'r' <- regex and we will not need to add them to urlpatterns
 router = routers.DefaultRouter()

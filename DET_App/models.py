@@ -5,6 +5,20 @@ from uuid import uuid4
 
 # Create your models here.
 
+class User(models.Model):
+    UserID = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    UserEmail  = models.CharField(max_length=256, unique=True, blank=False)
+    Username   = models.CharField(max_length=50, blank=False)
+    UserPW     = models.CharField(max_length=256, blank=False)
+    CustomerID    = models.CharField(max_length=256, blank=True)
+    Subscription  = models.CharField(max_length=256, blank=True)
+    created_at    = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table            = 'User'
+        verbose_name_plural = 'user'
+
 class Recipe(models.Model):
     RecipeID = models.UUIDField(
         primary_key=True, default=uuid4, editable=False)
@@ -61,9 +75,6 @@ class Ingredients(models.Model):
     class Meta:
         db_table = 'Ingredients'
         verbose_name_plural = 'ingredients'
-
-class UserRecipe(Recipe):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 # editable when we discuss how the user accounts will look. For now it gives recipe's for each user
 

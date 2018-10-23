@@ -1,5 +1,5 @@
 from rest_framework import serializers, viewsets
-from .models import Recipe, Ingredients, NutritionInfo, UserRecipe
+from .models import Recipe, Ingredients, NutritionInfo, User
 
 class RecipeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -33,28 +33,5 @@ class NutritionInfoViewSet(viewsets.ModelViewSet):
     serializer_class = NutritionInfoSerializer
 
 ## end NutritionalInfo ##
-
-class UserRecipeSerializer(serializers.HyperlinkedModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='api:user-detail', source='username', lookup_url_kwarg='username', lookup_field='username')
-    
-    class Meta:
-        model = UserRecipe
-        fields = '__all__'
-        
-    def create(self, validated_data):
-        user = self.context['request'].User
-        Recipe = UserRecipe.objects.create(user=user, **validated_data)
-        return Recipe
-        
-class UserRecipeViewSet(viewsets.ModelViewSet):
-    queryset = UserRecipe.objects.none()
-    serializer_class = UserRecipeSerializer
-    def get_queryset(self):
-        user = self.request.user
-        
-        if user.is_anonymous:
-            return UserRecipe.objects.none()
-        else:
-            return UserRecipe.objects.filter(user=user)
 
 ## end UserRecipes ##
