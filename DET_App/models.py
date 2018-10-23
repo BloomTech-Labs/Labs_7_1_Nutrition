@@ -11,10 +11,9 @@ class Recipe(models.Model):
     CookTime = models.DurationField()
     CookingMethod = models.CharField(max_length=50)
     Nutrition = models.ForeignKey('NutritionInfo', on_delete=models.CASCADE)
-    Allergies = models.BooleanField()
     RecipeCategory = models.CharField(max_length=50)
     RecipeCuisine = models.CharField(max_length=50)
-    RecipeIngredient = models.ForeignKey(
+    RecipeIngredients = models.ForeignKey(
         'Ingredients', on_delete=models.CASCADE)
     RecipeInstructions = models.TextField()
     RecipeYield = models.IntegerField()
@@ -24,8 +23,13 @@ class Recipe(models.Model):
 
     class Meta:
         db_table = 'Recipe'
-        verbose_name_plural = 'recipe'
+        verbose_name_plural = 'recipes'
 
+        
+# class RecipeIngredients_id(models.Model):
+#     Recipe_id = models.ForeignKey('Recipe', on_delete=models.CASCADE)
+#     Ingredients_id = models.ForeignKey('Ingredient', on_delete=models.CASCADE)
+    
 class NutritionInfo(models.Model):
     Calories = models.IntegerField()
     CarbohydrateContent = models.IntegerField()
@@ -44,10 +48,13 @@ class NutritionInfo(models.Model):
         db_table = 'NutritionInfo'
         verbose_name_plural = 'nutritionInfo'
 
+
 class Ingredients(models.Model):
+    IngredientID: models.UUIDField(primary_key=True, default=uuid4, editable=False)
     Quantity = models.IntegerField()
     Measurement = models.CharField(max_length=25)
-    Ingredient = models.CharField(max_length=25)
+    Item = models.CharField(max_length=25)
+    NutritionInfo = models.ForeignKey('NutritionInfo', on_delete=models.CASCADE) 
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     
