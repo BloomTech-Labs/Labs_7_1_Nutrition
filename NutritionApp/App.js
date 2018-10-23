@@ -2,13 +2,12 @@ import React from 'react';
 import { 
   StyleSheet,
   Text, 
-  View,
   KeyboardAvoidingView,
-  Image,
 } from 'react-native';
 import { Header } from 'react-native-elements';
 
-import Form from './app-front/components/Form.js';
+import SignIn from './app-front/components/authentication/signin.js';
+
 export default class App extends React.Component {
   render() {
     return (
@@ -19,6 +18,8 @@ export default class App extends React.Component {
       rightComponent={{ icon: 'home', color: '#fff' }}
     />
         <Form />
+        <Text style={styles.header}> Sign in here </Text>
+        <SignIn />
       </KeyboardAvoidingView>
     );
   }
