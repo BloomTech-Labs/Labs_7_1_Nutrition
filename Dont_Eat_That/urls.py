@@ -25,7 +25,8 @@ router = routers.DefaultRouter()
 router.register(r'recipe', RecipeViewSet)
 router.register(r'ingredients', IngredientsViewSet)
 router.register(r'nutritionInfo', NutritionInfoViewSet)
-router.register(r'UserRecipe', UserRecipeViewSet)
+
+## Routes will need to be edited to show the proper names for pages, but for now, it renders each schema
 
 urlpatterns = [
     path('admin/', admin.site.urls),

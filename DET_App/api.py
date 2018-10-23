@@ -29,12 +29,14 @@ class NutritionInfoSerializer(serializers.HyperlinkedModelSerializer):
         fields = '__all__'
         
 class NutritionInfoViewSet(viewsets.ModelViewSet):
-    queryset = Recipe.objects.all()
-    serializer_class = RecipeSerializer
+    queryset = NutritionInfo.objects.all()
+    serializer_class = NutritionInfoSerializer
 
 ## end NutritionalInfo ##
 
 class UserRecipeSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='api:user-detail', source='username', lookup_url_kwarg='username', lookup_field='username')
+    
     class Meta:
         model = UserRecipe
         fields = '__all__'
