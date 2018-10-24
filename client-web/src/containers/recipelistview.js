@@ -1,5 +1,5 @@
 import React from 'react';
-
+import axios from 'axios';
 import Myrecipes from '../components/myrecipe.js';
 
 const listData = [];
@@ -14,9 +14,22 @@ for (let i = 0; i < 23; i++) {
 }
 
 class RecipeList extends React.Component {
+    state = {
+        recipes: []
+
+    }
+    componentDidMount() {
+        axios.get('http://127.0.0.1.8000/api')
+        .then(res => {
+            this.setState({
+                recipes: res.data
+            });
+            console.log(res.data);
+        })
+    }
     render() {
         return (
-            <Myrecipes data={listData} />
+            <Myrecipes data={this.state.recipes} />
         )
     }
 }
