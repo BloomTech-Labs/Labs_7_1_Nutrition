@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import 'antd/dist/antd.css';  // from ant.design usage
 
 import CustomLayout from './containers/layout.js';
