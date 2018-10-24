@@ -13,8 +13,11 @@ gunicorn = "*"
 "psycopg2-binary" = "*"
 "psycopg2" = "*"
 whitenoise = "*"
+pyjwt = "*"
+graphene-django = "*"
 
 [dev-packages]
+coverage = "*"
 
 [requires]
 python_version = "3.6"

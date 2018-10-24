@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1' ,'dont-eat-that.herokuapp.com']
 INSTALLED_APPS = [
     'corsheaders',
     'DET_App',
+    'graphene_django',
     'rest_framework',
     'rest_framework.authtoken',
     'django.contrib.admin',
@@ -101,10 +102,6 @@ DATABASES = {
     'default': dj_database_url.config('DATABASE_URL', default='sqlite:///db.sqlite3')
 }
 
-# # for dj_database_url
-# db_from_env = dj_database_url.config()
-# DATABASES['default'].update(db_from_env)
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -163,6 +160,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+# Graphene Django (GraphQL)
+GRAPHENE = {
+    'SCHEMA': 'DET_App.schema.schema'
+}
 
 # SITE ID
 SITE_ID = 1
