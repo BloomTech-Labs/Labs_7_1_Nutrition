@@ -34,5 +34,5 @@ router.register(r'nutritionInfo', NutritionInfoViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
+    # path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
 ]
