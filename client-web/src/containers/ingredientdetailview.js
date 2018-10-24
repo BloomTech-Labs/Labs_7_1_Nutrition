@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import { Card } from 'antd';
-class IngredientDetailList extends React.Component {
+class IngredientDetail extends React.Component {
     state = {
         ingredients: {}
 
@@ -20,10 +20,10 @@ class IngredientDetailList extends React.Component {
     render() {
         return (
             <Card title={this.state.ingredients.title}> 
-							<p>{this.state.ingredients.amt}</p>
+							<p>{this.state.ingredients.details}</p>
 
             </Card>
         )
     }
 }
-export default IngredientDetailList;
+export default IngredientDetail;
