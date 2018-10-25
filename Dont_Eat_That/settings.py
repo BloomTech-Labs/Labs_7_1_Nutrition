@@ -15,9 +15,13 @@ import os
 from decouple import config
 
 
+
+
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+print("base dir path", BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -37,13 +41,13 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1' ,'dont-eat-that.herokuapp.com']
 INSTALLED_APPS = [
     'corsheaders',
     'DET_App',
-    'graphene_django',
     'rest_framework',
+    'webpack_loader',
+    'django.contrib.sites',
     'rest_framework.authtoken',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sites',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -67,7 +71,7 @@ ROOT_URLCONF = 'Dont_Eat_That.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,19 +91,16 @@ WSGI_APPLICATION = 'Dont_Eat_That.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'dont_eat_that',
-#         'USER': os.environ.get('DB_USER', ''),
-#         'PASSWORD': '4MzX!sFy',
-#         'HOST': 'localhost',
-#         'PORT':
-#     }
-# }
-
 DATABASES = {
     'default': dj_database_url.config('DATABASE_URL', default='sqlite:///db.sqlite3')
+}
+
+# Webpack injects link and script tag for the bundles which webpack generates dynamically
+WEBPACK_LOADER = {
+    'DEFAULT': {
+            'BUNDLE_DIR_NAME': 'bundles/',
+            'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
+        }
 }
 
 # Password validation
@@ -124,16 +125,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Allow read/write permissions for logged in users and read only for anonymous users
 
 # from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
+    'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-    ],
-    
+        'rest_framework.permissions.IsAuthenticated',
+    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-    )
+        'rest_framework.authentication.BasicAuthentication',
+    ),
 }
 
 # Internationalization
@@ -161,10 +163,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-# Graphene Django (GraphQL)
-GRAPHENE = {
-    'SCHEMA': 'DET_App.schema.schema'
-}
-
 # SITE ID
 SITE_ID = 1
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = '/'
