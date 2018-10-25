@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'DET_App',
     'rest_framework',
+    'webpack_loader',
     'django.contrib.sites',
     'rest_framework.authtoken',
     'django.contrib.admin',

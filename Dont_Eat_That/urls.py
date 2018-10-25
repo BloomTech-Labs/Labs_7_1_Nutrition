@@ -42,6 +42,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),  
     path('api-token-auth/', obtain_jwt_token),
+    path('', TemplateView.as_view(template_name = 'index.html')),
     
     # React URLs
     # add landingpage... One line
