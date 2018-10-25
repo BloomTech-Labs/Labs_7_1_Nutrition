@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import { Card } from 'antd';
+import { Card, Button } from 'antd';
 import CustomForm from '../components/form.js';
 
 class IngredientDetail extends React.Component {
@@ -19,15 +19,27 @@ class IngredientDetail extends React.Component {
             console.log(res.data); 
         })
     }
+    handleDelete = (event) => {
+        const ingId = this.props.match.params.ingredientID;
+        axios.get(`http://127.0.0.1.8000/api/${ingId}`);
+        this.props.history.push('/'); //react router dom package
+        this.forceUpdate(); // Needs to fix. 
+        
+    }
     render() {
         return (
             <div>
-                <Card title={this.state.ingredients.title}> 
-				    <p>{this.state.ingredients.details}</p>
+                <Card CookTime={this.state.ingredients.CookTime}> 
+				    <p>{this.state.ingredients}</p> 
+                    {/* .details */}
                 </Card>
                 <CustomForm 
-                requestType="put"
-                ingId={this.props.match.params.ingId}/>
+                    requestType="put"
+                    ingId={this.props.match.params.ingId}
+                    btnText="Update"/>
+                <form onSubmit={this.handleDelete}>
+                    <Button type="danger" htmlType="submit">Delete</Button>
+                </form>
             </div>
             
         )

@@ -6,30 +6,40 @@ const FormItem = Form.Item;
 
 class CustomForm extends React.Component {
 		handleFormSubmit = (event, requestType, ingId) => {
-			event.preventdefault();
-			const title = event.target.elements.title.value;
-			const content = event.target.elements.content.value;
-			console.log(title,content);
+	/* 
+	 CookTime = models.DurationField()
+    CookingMethod = models.CharField(max_length=50)
+    Nutrition = models.ForeignKey('NutritionInfo', on_delete=models.CASCADE)
+    RecipeCategory = models.CharField(max_length=50)
+    RecipeCuisine = models.CharField(max_length=50)
+    RecipeIngredients = models.ForeignKey(
+        'Ingredients', on_delete=models.CASCADE)
+    RecipeInstructions = models.TextField()
+    RecipeYield = models.IntegerField()
+    SuitableForDiet = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)*/ 
+			const cookTime= event.target.elements.CookTime.value;
+			const cookingMethod = event.target.elements.CookingMethod.value;
+			
+			console.log(cookTime,cookingMethod)
 
 			switch ( requestType ) {
 				case 'post':
-					axios.post('http://127.0.0.1:8000/api/', {
-						title: title,
-						content: content
+					return axios.post('http://127.0.0.1:8000/api/', {
+						CookTime: cookTime,
+						CookingMethod: cookingMethod
 					})
 					.then(res => console.log(res))
 					.catch(err => console.log(err));
-					break;
+		
 				case 'put':
-					axios.put(`http://127.0.0.1:8000/api/${ingId}/`, {
-							title: title,
-							content: content
+					return axios.put(`http://127.0.0.1:8000/api/${ingId}/`, {
+						CookTime: cookTime,
+						CookingMethod: cookingMethod
 						})
 						.then(res => console.log(res))
 						.catch(err => console.log(err));
-					break;
-
-				default:
 			}
  		}
   render() {
@@ -39,14 +49,14 @@ class CustomForm extends React.Component {
 					event,
 					this.props.requestType,
 					this.props.ingId )}>
-          <FormItem label="Title">
-            <Input name="title" placeholder="Give a title here..." />
+          <FormItem label="Cook Time: ">
+            <Input name="CookTime" placeholder="Give a title to your recipe..." />
           </FormItem>
-          <FormItem label="content">
-            <Input name="content" placeholder="enter some content..." />
+          <FormItem label="Cooking Method: ">
+            <Input name="CookingMethod" placeholder="Cooking instructions goes here..." />
           </FormItem>
           <FormItem>
-            <Button type="primary" htmlType="submit">Submit</Button>
+            <Button type="primary" htmlType="submit">{this.props.btnText}</Button>
           </FormItem>
         </Form>
       </div>

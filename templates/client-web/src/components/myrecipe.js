@@ -1,13 +1,6 @@
 import React from 'react';
-import { List, Avatar, Icon } from 'antd';
+import { List } from 'antd';
 
-
-const IconText = ({ type, text }) => (
-  <span>
-    <Icon type={type} style={{ marginRight: 8 }} />
-    {text}
-  </span>
-);
 
 const Myrecipes = (props) => {
   console.log(props);
@@ -25,16 +18,14 @@ const Myrecipes = (props) => {
     dataSource={props.data}
     renderItem={item => (
       <List.Item
-        key={item.username}
+        key={item.RecipeID}
         // actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
         // extra={<img width={272} alt="" src="" />}
       >
         <List.Item.Meta
-          username={<Avatar src={item.username} />}
-          title={<a href={item.href}>{item.title}</a>}
-          description={item.descrip}
+          CookTime={<a href={item.href}>{item.CookTime}</a>}
+          CookingMethod={<a href={item.href}>{item.CookingMethod}</a>}
         />
-        {item.content}
       </List.Item>
     )}
   />
