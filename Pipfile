@@ -12,8 +12,8 @@ dj-database-url = "*"
 gunicorn = "*"
 "psycopg2-binary" = "*"
 whitenoise = "*"
-pyjwt = "*"
 graphene-django = "*"
+djangorestframework-jwt = "*"
 
 [dev-packages]
 coverage = "*"

@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework.authtoken import views
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework_jwt.views import obtain_jwt_token
 from django.views.generic import TemplateView
 from graphene_django.views import GraphQLView
 
@@ -37,7 +38,8 @@ admin.autodiscover()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    path('api/', include(router.urls)),  
+    path('api-token-auth/', obtain_jwt_token),
     # React URLs
     # React-Native URLs
 ]
