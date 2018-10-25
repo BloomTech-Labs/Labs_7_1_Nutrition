@@ -89,7 +89,7 @@ module.exports = {
 		// require.resolve('webpack/hot/dev-server'),
 		require.resolve('webpack-dev-server/client') + '?http://localhost:3000',
 		require.resolve('webpack/hot/dev-server'),
-		require.resolve('react-dev-utils/webpackHotDevClient'),
+		// require.resolve('react-dev-utils/webpackHotDevClient'),
 		// Finally, this is your app's code:
 		paths.appIndexJs
 		// We include the app code last so that if there is a runtime error during

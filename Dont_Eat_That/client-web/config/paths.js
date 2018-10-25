@@ -38,7 +38,6 @@ function getServedPath(appPackageJson) {
 
 // config after eject: we're in ./config/
 module.exports = {
-	statsRoot: resolveApp('../'),
 	dotenv: resolveApp('.env'),
 	appPath: resolveApp('.'),
 	appBuild: resolveApp('build'),
@@ -52,5 +51,6 @@ module.exports = {
 	proxySetup: resolveApp('src/setupProxy.js'),
 	appNodeModules: resolveApp('node_modules'),
 	publicUrl: getPublicUrl(resolveApp('package.json')),
-	servedPath: getServedPath(resolveApp('package.json'))
+	servedPath: getServedPath(resolveApp('package.json')),
+	statsRoot: resolveApp('../')
 };
