@@ -16,8 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework.authtoken import views
+from django.views.decorators.csrf import csrf_exempt
+from graphene_django.views import GraphQLView
+
+
+from rest_framework import routers
+from DET_App.api import RecipeViewSet, IngredientsViewSet, NutritionInfoViewSet
+
+# To add route, We register it here with the 'r' <- regex and we will not need to add them to urlpatterns
+router = routers.DefaultRouter()
+router.register(r'recipe', RecipeViewSet)
+router.register(r'ingredients', IngredientsViewSet)
+router.register(r'nutritionInfo', NutritionInfoViewSet)
+
+## Routes will need to be edited to show the proper names for pages, but for now, it renders each schema
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # re_path('api-token-auth/', views.obtain_auth_token),
+    path('api/', include(router.urls)),
+    # path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
 ]

@@ -1,10 +1,11 @@
 _Store
 .vscode
 # db.sqlite3
-node_modules/**/*
-
+/node_modules
 psql.sh
 
 # Environments
 .env
 
+# coverage test results
+.coverage
