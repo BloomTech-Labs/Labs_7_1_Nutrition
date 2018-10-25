@@ -22,15 +22,15 @@ class IngredientDetail extends React.Component {
     handleDelete = (event) => {
         const ingId = this.props.match.params.ingredientID;
         axios.get(`http://127.0.0.1.8000/api/${ingId}`);
-        this.props.history.push('/'); //react router dom package
-        this.forceUpdate(); // Needs to fix. 
+        //this.props.history.push('/'); //react router dom package
+        //this.forceUpdate(); // Needs to fix. 
         
     }
     render() {
         return (
             <div>
                 <Card CookTime={this.state.ingredients.CookTime}> 
-				    <p>{this.state.ingredients}</p> 
+				    <p>{this.state.ingredients.CookingMethod}</p> 
                     {/* .details */}
                 </Card>
                 <CustomForm 
