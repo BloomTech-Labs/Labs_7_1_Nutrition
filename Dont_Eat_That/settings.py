@@ -90,6 +90,14 @@ DATABASES = {
     'default': dj_database_url.config('DATABASE_URL', default='sqlite:///db.sqlite3')
 }
 
+# Webpack injects link and script tag for the bundles which webpack generates dynamically
+WEBPACK_LOADER = {
+    'DEFAULT': {
+            'BUNDLE_DIR_NAME': 'bundles/',
+            'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
+        }
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 

@@ -15,6 +15,7 @@ whitenoise = "*"
 graphene-django = "*"
 djangorestframework-jwt = "*"
 pyjwt = "*"
+django-webpack-loader = "*"
 
 [dev-packages]
 coverage = "*"
