@@ -37,13 +37,13 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1' ,'dont-eat-that.herokuapp.com']
 INSTALLED_APPS = [
     'corsheaders',
     'DET_App',
-    'graphene_django',
     'rest_framework',
+    'django.contrib.sites',
     'rest_framework.authtoken',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sites',
+    
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -86,17 +86,6 @@ WSGI_APPLICATION = 'Dont_Eat_That.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'dont_eat_that',
-#         'USER': os.environ.get('DB_USER', ''),
-#         'PASSWORD': '4MzX!sFy',
-#         'HOST': 'localhost',
-#         'PORT':
-#     }
-# }
 
 DATABASES = {
     'default': dj_database_url.config('DATABASE_URL', default='sqlite:///db.sqlite3')
@@ -160,11 +149,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CORS_ORIGIN_ALLOW_ALL = True
-
-# Graphene Django (GraphQL)
-GRAPHENE = {
-    'SCHEMA': 'DET_App.schema.schema'
-}
 
 # SITE ID
 SITE_ID = 1

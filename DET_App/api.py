@@ -1,11 +1,13 @@
 from rest_framework import serializers, viewsets
 from .models import Recipe, Ingredients, NutritionInfo, User
 
+# Serializer sets up what you see
 class RecipeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Recipe
         fields = '__all__'
-        
+
+# ViewSet Sets up how it behaves 
 class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
