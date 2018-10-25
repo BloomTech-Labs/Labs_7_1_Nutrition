@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Myrecipes from '../components/myrecipe.js';
+import CustomForm from '../components/form.js';
 
 const listData = [];
 for (let i = 0; i < 23; i++) {
@@ -29,7 +30,15 @@ class RecipeList extends React.Component {
     }
     render() {
         return (
-            <Myrecipes data={this.state.recipes} />
+            <div> 
+                <Myrecipes data={this.state.recipes} />
+                <br />
+                <h2>Create recipe</h2>
+                <CustomForm 
+                    requestType="post"
+                    ingId={null}/>
+            </div>
+            
         )
     }
 }
