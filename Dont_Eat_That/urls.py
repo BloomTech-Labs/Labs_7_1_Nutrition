@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include, re_path
 from rest_framework.authtoken import views
@@ -37,9 +38,21 @@ router.register(r'nutritionInfo', NutritionInfoViewSet)
 admin.autodiscover()
 
 urlpatterns = [
+    # ADMIN Routes
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),  
     path('api-token-auth/', obtain_jwt_token),
+    
     # React URLs
+    # add landingpage... One line
+    # path('', RedirectView.as_view(url='', permanent=True)) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
+    
     # React-Native URLs
+    # path('', RedirectView.as_view(url='', permanent=True)) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
 ]
+
+# Add Django site authentication urls (for login, logout, password management)
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
+

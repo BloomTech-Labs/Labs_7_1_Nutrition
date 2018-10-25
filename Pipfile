@@ -14,6 +14,7 @@ gunicorn = "*"
 whitenoise = "*"
 graphene-django = "*"
 djangorestframework-jwt = "*"
+pyjwt = "*"
 
 [dev-packages]
 coverage = "*"
