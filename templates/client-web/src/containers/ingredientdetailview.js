@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 
 import { Card } from 'antd';
+import CustomForm from '../components/form.js';
+
 class IngredientDetail extends React.Component {
     state = {
         ingredients: {}
@@ -19,10 +21,15 @@ class IngredientDetail extends React.Component {
     }
     render() {
         return (
-            <Card title={this.state.ingredients.title}> 
-							<p>{this.state.ingredients.details}</p>
-
-            </Card>
+            <div>
+                <Card title={this.state.ingredients.title}> 
+				    <p>{this.state.ingredients.details}</p>
+                </Card>
+                <CustomForm 
+                requestType="put"
+                ingId={this.props.match.params.ingId}/>
+            </div>
+            
         )
     }
 }
