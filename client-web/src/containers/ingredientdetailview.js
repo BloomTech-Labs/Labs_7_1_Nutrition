@@ -10,7 +10,8 @@ class IngredientDetail extends React.Component {
 
     }
     componentDidMount() {
-        const ingId = this.props.match.params.ingredientID;
+        const ingId = this.props.match.params.ingredient;
+        console.log(JSON.stringify(ingId));
         axios.get(`http://127.0.0.1.8000/api/${ingId}`)
         .then(res => {
             this.setState({
