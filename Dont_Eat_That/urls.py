@@ -20,11 +20,11 @@ from rest_framework.authtoken import views
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework_jwt.views import obtain_jwt_token
 from django.views.generic import TemplateView
-from graphene_django.views import GraphQLView
 
 
 from rest_framework import routers
-from DET_App.api import RecipeViewSet, IngredientsViewSet, NutritionInfoViewSet
+from DET_App.api import RecipeViewSet, IngredientsViewSet, NutritionInfoViewSet, TokenSerializer
+from DET_App.views import LoginView, RegisterUsers
 
 # Routers provide a way to set up URL conf.
 # To add route, We register it here with the 'r' <- regex and we will not need to add them to urlpatterns
@@ -33,21 +33,24 @@ router.register(r'recipe', RecipeViewSet)
 router.register(r'ingredients', IngredientsViewSet)
 router.register(r'nutritionInfo', NutritionInfoViewSet)
 
-## Routes will need to be edited to show the proper names for pages, but for now, it renders each schema
+'''
+TODO: Routes will need to be edited to show the proper names for pages, but for now, it renders each schema
+'''
 
 admin.autodiscover()
 
 urlpatterns = [
     # ADMIN Routes
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),  
-    path('api-token-auth/', obtain_jwt_token),
-    path('', TemplateView.as_view(template_name = 'index.html')),
-    
+    path('api/', include(router.urls)),
+    path('auth/login/', LoginView.as_view(), name="auth-login"),
+    path('auth/register/', RegisterUsers.as_view(), name="auth-register"),
+    path('', TemplateView.as_view(template_name='index.html')),
+
     # React URLs
     # add landingpage... One line
     # path('', RedirectView.as_view(url='', permanent=True)) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
-    
+
     # React-Native URLs
     # path('', RedirectView.as_view(url='', permanent=True)) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
 ]
@@ -56,4 +59,3 @@ urlpatterns = [
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
 ]
-

@@ -1,4 +1,6 @@
 from django.test import TestCase
+from django.urls import include, path, reverse
+from rest_framework.test import APITestCase, APIClient
 from django.contrib.auth.models import User
 
 # Create your tests here.
@@ -10,14 +12,16 @@ class BaseViewTest(APITestCase):
     @staticmethod
     def login_a_user(self, username="", password=""):
         url = reverse("auth-login")
-        return self.client.post(url, data=json.dumps({
-            "username": username,
-            "password": password
-        }),
-        content_type="application/json"
+        return self.client.post(
+            url,
+            data=json.dumps({
+                "username": username,
+                "password": password
+            }),
+            content_type="application/json"
         )
 
-     def setUp(self):
+    def setUp(self):
         # create a admin user
         self.user = User.objects.create_superuser(
             username="test_user",
@@ -26,7 +30,8 @@ class BaseViewTest(APITestCase):
             first_name="test",
             last_name="user",
         )
-        
+
+
 class AuthLoginUserTest(BaseViewTest):
     """
     Tests for the auth/login/ endpoint
