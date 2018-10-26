@@ -3,7 +3,7 @@ import { List } from 'antd';
 
 
 const Myrecipes = (props) => {
-  console.log(props);
+  console.log("data here: ",props);
     return (
         
   <List

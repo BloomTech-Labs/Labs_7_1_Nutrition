@@ -16,7 +16,7 @@ class CustomForm extends React.Component {
 						CookTime: cookTime,
 						CookingMethod: cookingMethod
 					})
-					.then(res => console.log("success"))
+					.then((res) => {console.log("success");})
 					.catch(err => console.log("there was an error"));
 		
 				case 'put':
