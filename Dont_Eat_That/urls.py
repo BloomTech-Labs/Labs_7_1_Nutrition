@@ -38,7 +38,9 @@ TODO: Routes will need to be edited to show the proper names for pages, but for 
 '''
 
 admin.autodiscover()
-
+'''
+TODO: Debug... The Django backend may be rendering faster than the React app? 
+'''
 urlpatterns = [
     # ADMIN Routes
     path('admin/', admin.site.urls),
@@ -46,6 +48,7 @@ urlpatterns = [
     path('auth/login/', LoginView.as_view(), name="auth-login"),
     path('auth/register/', RegisterUsers.as_view(), name="auth-register"),
     path('', TemplateView.as_view(template_name='index.html')),
+
 
     # React URLs
     # add landingpage... One line
