@@ -19,6 +19,7 @@ class IngredientDetail extends React.Component {
             });
             console.log(res.data); 
         })
+		.catch(err => console.log("Caught error"));
     }
     handleDelete = (event) => {
         const ingId = this.props.match.params.ingredientID;

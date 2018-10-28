@@ -6,10 +6,10 @@ const FormItem = Form.Item;
 
 class CustomForm extends React.Component {
 		handleFormSubmit = (event, requestType, ingId) => {
-			event.preventdefault();
+			event.preventDefault();
 			const cookTime= event.target.elements.CookTime.value;
 			const cookingMethod = event.target.elements.CookingMethod.value;
-		
+			console.log(cookingMethod,cookTime); //data gets caught
 			switch ( requestType ) {
 				case 'post':
 					return axios.post('http://127.0.0.1:8000/api/recipe/', {
