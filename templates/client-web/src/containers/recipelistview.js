@@ -10,27 +10,40 @@ class RecipeList extends React.Component {
 
     }
     componentDidMount() {
-        axios.get(`localhost:8000/api/`)
+        axios.get(`http://127.0.0.1:8000/api/recipe/`)
         .then(res => {
+            console.log("Recipelist View: ",res.data);
             this.setState({
                 recipes: res.data
             });
-            console.log(res.data); 
         })
+	    .catch(err => console.log(err));
+		
     }
     render() {
-        return (
-            <div> 
-                <Myrecipes data={this.state.recipes} />
-                <br />
-                <h2>Create recipe</h2>
-                <CustomForm 
-                    requestType="post"
-                    ingId={null}
-                    btnText="Create"/>
+        if(this.state.recipes.length !== 0) {
+            console.log("First row:  ",this.state.recipes[0].CookTime)
+            return (
+                <div> 
+                    <Myrecipes data={this.state.recipes} />
+                    <br />
+                    <h2>Create recipe</h2>
+                    <CustomForm 
+                        requestType="post"
+                        ingId={null}
+                        btnText="Create"/>
+                </div>
+                
+            )
+        }
+        else {
+            return (
+                <div>      
+            <h2>page not found</h2>
             </div>
-            
-        )
+            )
+        }
+        
     }
 }
 export default RecipeList;
