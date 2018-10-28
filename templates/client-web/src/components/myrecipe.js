@@ -6,14 +6,35 @@ import ColumnGroup from 'antd/lib/table/ColumnGroup';
 
 const Myrecipes = (props) => {
   console.log("My Recipie :",props.data);
-  const data = props.data.map(v => { return v.url});
+  const data = props.data.map(v => { return v.CookingMethod});
   console.log("My recipe row:  ",data);
-  const columns = [{
+  const columns = [ {
+    title: 'Suitable For Diet',
+    dataIndex: 'SuitableForDiet',
+  }, {
+    title: 'Recipe Category',
+    dataIndex: 'RecipeCategory',
+  }, {
+    title: 'Recipe Cuisine',
+    dataIndex: 'RecipeCuisine',
+  }, {
     title: 'Cooking Time',
     dataIndex: 'CookTime'
+   }, {
+  //   title: 'Cooking Method',
+  //   dataIndex: 'CookingMethod',    
+  // }, {
+    title: 'Recipe Yield',
+    dataIndex: 'RecipeYield',
+  },  {
+    title: 'Recipe Ingredients',
+    dataIndex: 'RecipeIngredients',
+  },  {
+    title: 'Recipe Ingredients',
+    dataIndex: 'RecipeIngredients',
   }, {
-    title: 'Cooking Method',
-    dataIndex: 'CookingMethod',    
+    title: 'Recipe Instructions',
+    dataIndex: 'RecipeInstructions',
   }]
     return (
         
@@ -43,12 +64,12 @@ const Myrecipes = (props) => {
   //   )}
   // />
   <div>
-  <List
+  {/* <List
   dataSource={data}
     renderItem={item => (
       <List.Item>{item}</List.Item>
     )}
-  />
+  /> */}
   
   <Table
   itemLayout="vertical"
