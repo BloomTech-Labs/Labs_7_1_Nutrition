@@ -29,7 +29,8 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'dont-eat-that.herokuapp.com', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1',
+                 'dont-eat-that.herokuapp.com', '127.0.0.1:8000']
 
 
 # Application definition
@@ -159,7 +160,7 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # if it does not update to newest React-App changes, run `python ./manage.py collectstatic` to migrate from `pipenv shell`
 STATICFILES_DIRS = [
