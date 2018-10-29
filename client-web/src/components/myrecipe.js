@@ -5,9 +5,9 @@ import ColumnGroup from 'antd/lib/table/ColumnGroup';
 
 
 const Myrecipes = (props) => {
-  console.log("My Recipie :",props.data);
+  //console.log("My Recipie :",props.data);
   const data = props.data.map(v => { return v.CookingMethod});
-  console.log("My recipe row:  ",data);
+  //console.log("My recipe row:  ",data);
   const columns = [ {
     title: 'Suitable For Diet',
     dataIndex: 'SuitableForDiet',
@@ -21,15 +21,9 @@ const Myrecipes = (props) => {
     title: 'Cooking Time',
     dataIndex: 'CookTime'
    }, {
-  //   title: 'Cooking Method',
-  //   dataIndex: 'CookingMethod',    
-  // }, {
     title: 'Recipe Yield',
     dataIndex: 'RecipeYield',
-  },  {
-    title: 'Recipe Ingredients',
-    dataIndex: 'RecipeIngredients',
-  },  {
+  }, {
     title: 'Recipe Ingredients',
     dataIndex: 'RecipeIngredients',
   }, {
@@ -74,6 +68,12 @@ const Myrecipes = (props) => {
   <Table
   itemLayout="vertical"
   size="large"
+  pagination={{
+        onChange: (page) => {
+          console.log(page);
+        },
+         pageSize: 3,
+      }}
   dataSource={props.data}
   columns={columns}
   />

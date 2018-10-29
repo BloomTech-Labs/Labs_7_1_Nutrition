@@ -12,7 +12,7 @@ class RecipeList extends React.Component {
     componentDidMount() {
         axios.get(`http://127.0.0.1:8000/api/recipe/`)
         .then(res => {
-            console.log("Recipelist View: ",res.data);
+            //console.log("Recipelist View: ",res.data);
             this.setState({
                 recipes: res.data
             });
@@ -22,7 +22,7 @@ class RecipeList extends React.Component {
     }
     render() {
         if(this.state.recipes.length !== 0) {
-            console.log("First row:  ",this.state.recipes[0].CookTime)
+            // console.log("First row:  ",this.state.recipes[0].CookTime)
             return (
                 <div> 
                     <Myrecipes data={this.state.recipes} />
