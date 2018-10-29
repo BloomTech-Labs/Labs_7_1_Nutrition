@@ -67,7 +67,7 @@ ROOT_URLCONF = 'Dont_Eat_That.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates/client-web/public')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/client-web/build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -160,6 +160,11 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# if it does not update to newest React-App changes, run `python ./manage.py collectstatic` to migrate from `pipenv shell`
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'templates/client-web/build/static'),
+]
 
 CORS_ORIGIN_ALLOW_ALL = True
 

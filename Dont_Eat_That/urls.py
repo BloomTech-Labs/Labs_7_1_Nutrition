@@ -47,8 +47,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('auth/login/', LoginView.as_view(), name="auth-login"),
     path('auth/register/', RegisterUsers.as_view(), name="auth-register"),
-    path('', TemplateView.as_view(template_name='index.html')),
-
+    re_path('.*', TemplateView.as_view(template_name='index.html')),
 
     # React URLs
     # add landingpage... One line
