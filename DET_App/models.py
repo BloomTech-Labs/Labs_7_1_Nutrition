@@ -28,6 +28,7 @@ class Recipe(models.Model):
     CookTime = models.DurationField()
     CookingMethod = models.CharField(max_length=50)
     Nutrition = models.ForeignKey('NutritionInfo', on_delete=models.CASCADE)
+    RecipeTitle = model.CharField(max_length=50)
     RecipeCategory = models.CharField(max_length=50)
     RecipeCuisine = models.CharField(max_length=50)
     RecipeIngredients = models.ForeignKey(
