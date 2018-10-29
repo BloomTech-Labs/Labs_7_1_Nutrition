@@ -61,6 +61,10 @@
     "test": "node scripts/test.js",
     "postinstall": "npm run build"
   },
+  "engines": {
+    "node" : "11.0.0",
+    "npm" : "6.4.1"  
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
