@@ -15,7 +15,7 @@
 
 ## *Deployed*: https://dont-eat-that.herokuapp.com/admin
 
-* Before running server for deploy in development, in pipenv shell, run `python ./mange.py collectstatic`
+* Before running server for deploy in development, in pipenv shell, run `python ./manage.py collectstatic`
 * then run `git push heroku master`
 
 ## *WebServices *
