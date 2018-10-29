@@ -1,17 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import Myrecipes from '../components/myrecipe.js';
+import CustomForm from '../components/form.js';
 
-const listData = [];
-for (let i = 0; i < 23; i++) {
-  listData.push({
-    href: 'http://ant.design',
-    title: `ant design part ${i}`,
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    description: 'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content: 'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-  });
-}
 
 class RecipeList extends React.Component {
     state = {
@@ -19,18 +10,40 @@ class RecipeList extends React.Component {
 
     }
     componentDidMount() {
-        axios.get(`http://127.0.0.1.8000/api/`)
+        axios.get(`http://127.0.0.1:8000/api/recipe/`)
         .then(res => {
+            //console.log("Recipelist View: ",res.data);
             this.setState({
                 recipes: res.data
             });
-            console.log(res.data); 
         })
+	    .catch(err => console.log(err));
+		
     }
     render() {
-        return (
-            <Myrecipes data={this.state.recipes} />
-        )
+        if(this.state.recipes.length !== 0) {
+            // console.log("First row:  ",this.state.recipes[0].CookTime)
+            return (
+                <div> 
+                    <Myrecipes data={this.state.recipes} />
+                    <br />
+                    <h2>Create recipe</h2>
+                    <CustomForm 
+                        requestType="post"
+                        ingId={null}
+                        btnText="Create"/>
+                </div>
+                
+            )
+        }
+        else {
+            return (
+                <div>      
+            <h2>Table not found</h2>
+            </div>
+            )
+        }
+        
     }
 }
 export default RecipeList;
