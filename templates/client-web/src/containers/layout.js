@@ -2,6 +2,8 @@ import React from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import { Link } from 'react-router-dom'; 
 
+import RecipeList from './recipelistview.js';
+
 const { Header, Content, Footer } = Layout;
 
 const CustomLayout = (props) => {
@@ -27,7 +29,7 @@ const CustomLayout = (props) => {
             {/* <Link>Home</Link> */}
           </Breadcrumb>
 						<div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
-							{props.children}
+							<RecipeList />
 						</div>
         </Content>
         <Footer style={{ textAlign: 'center', background: '#646404' }}>

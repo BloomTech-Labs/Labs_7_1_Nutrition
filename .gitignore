@@ -1,6 +1,6 @@
 _Store
 .vscode
-# db.sqlite3
+db.sqlite3
 node_modules/
 psql.sh
 
