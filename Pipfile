@@ -11,10 +11,11 @@ Django = "*"
 dj-database-url = "*"
 gunicorn = "*"
 "psycopg2-binary" = "*"
-"psycopg2" = "*"
 whitenoise = "*"
-pyjwt = "*"
 graphene-django = "*"
+djangorestframework-jwt = "*"
+pyjwt = "*"
+django-webpack-loader = "*"
 
 [dev-packages]
 coverage = "*"

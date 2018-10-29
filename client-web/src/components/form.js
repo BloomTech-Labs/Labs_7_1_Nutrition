@@ -12,20 +12,22 @@ class CustomForm extends React.Component {
 			console.log(cookingMethod,cookTime); //data gets caught
 			switch ( requestType ) {
 				case 'post':
-					return axios.post('http://127.0.0.1:8000/api/recipe/', {
+					return ( axios.post('http://127.0.0.1:8000/api/recipe/', {
 						CookTime: cookTime,
 						CookingMethod: cookingMethod
 					})
 					.then((res) => {console.log("success");})
-					.catch(err => console.log("there was an error"));
+          .catch(err => console.log("there was an error"));
+          );
 		
 				case 'put':
-					return axios.put(`http://127.0.0.1:8000/api/recipe/${ingId}/`, {
+					return ( axios.put(`http://127.0.0.1:8000/api/recipe/${ingId}/`, {
 						CookTime: cookTime,
 						CookingMethod: cookingMethod
 						})
 						.then(res => console.log(res))
-						.catch(err => console.log(err));
+            .catch(err => console.log(err));
+          );
 			}
  		}
   render() {
