@@ -39,7 +39,7 @@ class RecipeList extends React.Component {
         else {
             return (
                 <div>      
-            <h2>page not found</h2>
+            <h2>Table not found</h2>
             </div>
             )
         }
