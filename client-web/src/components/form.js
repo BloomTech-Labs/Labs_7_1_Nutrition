@@ -41,6 +41,25 @@ class CustomForm extends React.Component {
           <FormItem label="Cooking Method: ">
             <Input name="CookingMethod" placeholder="Cooking instructions goes here..." />
           </FormItem>
+					<FormItem label="Recipe Category: ">
+            <Input name="RecipeCategory" placeholder="Cooking instructions goes here..." />
+          </FormItem>
+					<FormItem label="Recipe Cuisine: ">
+            <Input name="RecipeCuisine" placeholder="So, what cusine is this?..." />
+          </FormItem>
+					<FormItem label="Recipe Instructions: ">
+            <Input name="RecipeInstructions" placeholder="Creative instructions goes here..." />
+          </FormItem>
+					<FormItem label="Recipe Yield: ">
+            <Input name="RecipeYield" placeholder="how many in number..." />
+          </FormItem>
+					<FormItem label="Suitable For Diet: ">
+            <Input name="SuitableForDiet" placeholder="Suitable For what Diet..." />
+          </FormItem><FormItem label="Nutrition ">
+            <Input name="Nutrition" placeholder="Dropdown will show up" />
+          </FormItem><FormItem label="Recipe Ingredients: ">
+            <Input name="RecipeIngredients" placeholder="Ingredients goes here..." />
+          </FormItem>
           <FormItem>
             <Button type="primary" htmlType="submit">{this.props.btnText}</Button>
           </FormItem>
