@@ -15,4 +15,4 @@ from whitenoise.Django import DjangoWhiteNoise
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Dont_Eat_That.settings')
 
 application = get_wsgi_application()
-application = DjangoWhiteNoise(application)
+# application = DjangoWhiteNoise(application)
