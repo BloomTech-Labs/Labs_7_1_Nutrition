@@ -21,7 +21,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework_jwt.views import obtain_jwt_token
 from django.views.generic import TemplateView
 
-
+from Dont_Eat_That import settings
 from rest_framework import routers
 from DET_App.api import RecipeViewSet, IngredientsViewSet, NutritionInfoViewSet, TokenSerializer
 from DET_App.views import LoginView, RegisterUsers
@@ -39,7 +39,7 @@ TODO: Routes will need to be edited to show the proper names for pages, but for 
 
 admin.autodiscover()
 '''
-TODO: Debug... The Django backend may be rendering faster than the React app? 
+TODO: Debug... The Django backend may be rendering faster than the React app?
 '''
 urlpatterns = [
     # ADMIN Routes
