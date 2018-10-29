@@ -1,17 +1,23 @@
-# Labs_7_1_Nutritions
-# *Frontend *
-    - REACT NATIVE 
+# Labs_7_1_Nutrition
+
+## *Front-end *
+
+    - REACT NATIVE
     - React Native elements
     - React Navigation
 
 *Deployed*: https://expo.io/@jjustinn/NutritionApp
 
-# *Backend *
+## *Back-end *
+
     - Python /Django
     - Heroku
 
-*Deployed*: https://dont-eat-that.herokuapp.com/admin
+## *Deployed*: https://dont-eat-that.herokuapp.com/admin
 
-*WebServices *
+* Before running server for deploy in development, in pipenv shell, run `python ./mange.py collectstatic`
+* then run `git push heroku master`
+
+## *WebServices *
+
     - REST API
-
