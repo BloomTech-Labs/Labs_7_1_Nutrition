@@ -1,11 +1,10 @@
 import decode from 'jwt-decode';
 
-
 export default class AuthService {
     // Initializing important variables
     constructor(domain) {
-        this.domain = domain || 'http://localhost:8080' // API server domain
-        this.fetch = this.fetch.bind(this) // React binding stuff
+        this.domain = domain || 'http://localhost:8000' // API server domain
+        this.fetch = this.fetch.bind(this) 
         this.login = this.login.bind(this)
         this.getProfile = this.getProfile.bind(this)
     }
@@ -37,23 +36,29 @@ export default class AuthService {
             else {
                 return false;
             }
-            catch(err) {
+        }
+        catch(err) {
                 return false;
             }
         }
-        setToken(idToken) {
+
+    setToken(idToken) {
             localStorage.setItem('id_token', idToken);
         }
-        getToken() {
+
+    getToken() {
             return localStorage.getItem('id_token')
         }
-        logout() {
+
+    logout() {
             localStorage.removeItem('id_token');
         }
-        getProfile() {
+
+    getProfile() {
             return decode(this.getToken());
         }
-        this.fetch(url, options) {
+
+    fetch(url, options) {
             const headers = {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -67,8 +72,9 @@ export default class AuthService {
             })
             .then(this._checkStatus)
             .then(res => res.json())
-        }
-        _checkStatus(res) {
+    }
+    
+    _checkStatus(res) {
             if(res.status >= 200 && res.status < 300) {
                 return res
             } else {

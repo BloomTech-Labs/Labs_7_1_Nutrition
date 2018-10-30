@@ -1,22 +1,14 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import BaseRouter from './routes.js';
-import 'antd/dist/antd.css';  // from ant.design usage
+import React from 'react';
+import Main from './components/main.js';
+import Headers from './components/header.js';
+import Footers from './components/footer.js';
 
-import CustomLayout from './containers/layout.js';
-
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-      <Router>
-        <CustomLayout>
-          <BaseRouter/>
-        </CustomLayout> 
-        </Router>
-      </div>
-    );
-  }
-}
-
+const App = () => (
+  <div>
+    <h1> Don't eat that - Nutrition app </h1>
+    <Headers />
+    <Main />
+    <Footers />
+  </div>
+);
 export default App;

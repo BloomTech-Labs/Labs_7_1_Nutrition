@@ -31,6 +31,8 @@ class IngredientDetail extends React.Component {
     render() {
         return (
             <div>
+                <h1>Ingredient Modal view</h1>
+                <h2>under progress...</h2>
                 <Card CookTime={this.state.ingredients.CookTime}> 
 				    <p>{this.state.ingredients.CookingMethod}</p> 
                     {/* .details */}
