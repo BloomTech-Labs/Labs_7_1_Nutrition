@@ -4,6 +4,16 @@ import axios from 'axios';
 const FormItem = Form.Item;
 
 class Login extends React.Component {
+    handleFormSubmit = (event) => {
+        event.preventDefault();
+        this.Auth.login(this.state.username, this.state.password)
+        .then(res => {
+            this.props.history.replace('/');
+        })
+        .catch(err => {
+            alert(err);
+        })
+    }
     render() {
         return (
             <div>
