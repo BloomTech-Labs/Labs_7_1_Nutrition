@@ -1,12 +1,12 @@
 import React from 'react';
 import { List, Table, Card } from 'antd';
-import Column from 'antd/lib/table/Column';
-import ColumnGroup from 'antd/lib/table/ColumnGroup';
+//import Column from 'antd/lib/table/Column';
+//import ColumnGroup from 'antd/lib/table/ColumnGroup';
 
 
 const Myrecipes = (props) => {
-  //console.log("My Recipie :",props.data);
-  const data = props.data.map(v => { return v.CookingMethod});
+  console.log("My Recipie :",props.data);
+  //const data = props.data.map(v => { return v.CookingMethod});
   //console.log("My recipe row:  ",data);
   const columns = [ {
     title: 'Suitable For Diet',

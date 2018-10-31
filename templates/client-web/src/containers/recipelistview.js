@@ -12,7 +12,7 @@ class RecipeList extends React.Component {
     componentDidMount() {
         axios.get(`http://127.0.0.1:8000/api/recipe/`)
         .then(res => {
-            //console.log("Recipelist View: ",res.data);
+            console.log("Recipelist View: ",res.data);
             this.setState({
                 recipes: res.data
             });
@@ -38,8 +38,8 @@ class RecipeList extends React.Component {
         }
         else {
             return (
-                <div>      
-            <h2>Table not found</h2>
+                <div>  
+                    <h1>Please login to create, edit, view and delete recipes. </h1>
             </div>
             )
         }
