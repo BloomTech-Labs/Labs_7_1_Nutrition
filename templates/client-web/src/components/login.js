@@ -23,31 +23,43 @@ class Login extends React.Component {
 	}
     handleLogin = (event) => {
 				event.preventDefault();
-				const {
-					username,
-					password,
-				} = this.state;
-
-				console.log("Username, password state: ",this.state);
-        axios.post('http://127.0.0.1:8000/auth/login/', {
-            username,
-            password,
-					})
-        .then((res) => {
-					console.log("success", res.data);
-					localStorage.setItem('token', res.data.jwt);
-					//localStorage.setItem('username', res.data.newUser.name);
-				
-					console.log("after successful axios call", {status: res.status});
-				})
-        .catch(err => {
-					console.log("there was an error", err);
+				if (!this.state.username || !this.state.password) {
+					alert('Please provide username and password');
 					this.setState({
-						password: '',
-						confirmPassword: '',
+						error: true,
+						message: 'Please provide username and password',
 					});
+				} else {
+					const {
+						username,
+						password,
+					} = this.state;
+	
+					console.log("Username, password state: ",this.state);
+					axios.post('http://127.0.0.1:8000/auth/login/', {
+							username,
+							password,
+						})
+					.then((res) => {
+						console.log("success", res.data);
+						localStorage.setItem('token', res.data.jwt);
+						localStorage.setItem('username', res.data.username);
+						console.log("just username:", res.data.username);
+						console.log("after successful axios call", {status: res.status});
+						this.setState({
+							error: false,
+						});
+						this.props.history.push('/recipe');
+					})
+					.catch(err => {
+						console.log("there was an error", err);
+						this.setState({
+							password: '',
+						});
+					}
+				)
 				}
-    )
+				
         // this.Auth.login(this.state.username, this.state.password)
         // .then(res => {
         //     this.props.history.replace('/');
@@ -62,7 +74,7 @@ class Login extends React.Component {
     // }
     render() {
         return (
-            <div>
+            <div >
                 <h2>Sign in here: </h2>
                 <Form onSubmit={(event) => this.handleLogin(
 					event )}>
