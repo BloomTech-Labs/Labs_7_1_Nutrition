@@ -39,7 +39,7 @@ class RecipeList extends React.Component {
         else {
             return (
                 <div>  
-                    <h1>Please login to view, create, edit and delete recipes. </h1>
+                    <h1>Please login to create, edit, view and delete recipes. </h1>
             </div>
             )
         }

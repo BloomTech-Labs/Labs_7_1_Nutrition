@@ -11,6 +11,8 @@ class Login extends React.Component {
 				this.state = {
 					username: '',
 					password: '',
+					confirmPassword: '',
+					email: '',
 				};
 				this.handleChange = this.handleChange.bind(this);
 				//this.handleNewUser = this.handleNewUser.bind(this);
@@ -27,18 +29,38 @@ class Login extends React.Component {
 				const {
 					username,
 					password,
+					confirmPassword,
+					email,
 				} = this.state;
 
-				console.log("Username, password state: ",this.state);
-        axios.post('http://127.0.0.1:8000/auth/login/', {
+				console.log("password:", password);
+				console.log("confirmPassword:",confirmPassword );
+				if(password !== confirmPassword) {
+					alert("Password mismatch. Please try again");
+					this.setState({
+						password: '',
+						confirmPassword: '',
+						email,
+					});
+					return;
+				}
+        axios.post('http://127.0.0.1:8000/auth/register/', {
             username,
-            password,
+						password,
+						email,
 					})
         .then((res) => {
 					console.log("success", res.data);
 					localStorage.setItem('token', res.data.jwt);
 					//localStorage.setItem('username', res.data.newUser.name);
-				
+
+					//if password comparison fails local state set to be empty. 
+					this.setState({
+						username: '',
+						password: '',
+						confirmPassword: '',
+						email: '',
+					});
 					console.log("after successful axios call", {status: res.status});
 				})
         .catch(err => {
@@ -64,7 +86,7 @@ class Login extends React.Component {
     render() {
         return (
             <div>
-                <h2>Sign in here: </h2>
+                <h2>Register here: </h2>
                 <Form onSubmit={(event) => this.handleFormSubmit(
 					event )}>
                     <FormItem label="Username : ">
@@ -77,6 +99,12 @@ class Login extends React.Component {
 												<Input 
 													name="password" 
 													placeholder="Mix of 8 chars, numbers and symbols..." 
+													onChange={this.handleChange}/>
+                    </FormItem>
+                    <FormItem label="Confirm Password : ">
+												<Input 
+													name="confirmPassword" 
+													placeholder="Same as above..." 
 													onChange={this.handleChange}/>
                     </FormItem>
                     <FormItem>
