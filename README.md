@@ -13,7 +13,7 @@
     - Python /Django
     - Heroku
 
-## *Deployed*: https://dont-eat-that.herokuapp.com/admin
+## *Deployed*: https://dont-eat-that.herokuapp.com/
 
 * Before running server for deploy in development, in pipenv shell, run `python ./manage.py collectstatic`
 * then run `git push heroku master`
