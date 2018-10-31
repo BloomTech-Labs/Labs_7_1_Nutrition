@@ -33,7 +33,6 @@
     "jest": "23.6.0",
     "jest-pnp-resolver": "1.0.1",
     "jest-resolve": "23.6.0",
-    "jwt-decode": "^2.2.0",
     "mini-css-extract-plugin": "0.4.3",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pnp-webpack-plugin": "1.1.0",
@@ -52,14 +51,21 @@
     "terser-webpack-plugin": "1.1.0",
     "url-loader": "1.1.1",
     "webpack": "4.19.1",
+    "webpack-dev-server": "3.1.9",
     "webpack-manifest-plugin": "2.0.4",
-    "workbox-webpack-plugin": "3.6.2"
+    "workbox-webpack-plugin": "3.6.2",
+    "webpack-bundle-tracker": "^0.4.2-beta"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js",
-    "postinstall": "npm run build"
+    "start": "node templates/client-web/scripts/start.js",
+    "build": "node templates/client-web/scripts/build.js",
+    "test": "node templates/client-web/scripts/test.js",
+    "postinstall": "yarn --cwd templates/client-web/scripts run build"
+  },
+  "engines": {
+    "node" : "11.0.0",
+    "npm" : "6.4.1",
+    "yarn" : "1.10.1" 
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -70,10 +76,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "devDependencies": {
-    "webpack-bundle-tracker": "^0.4.2-beta",
-    "webpack-dev-server": "^3.1.9"
-  },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
