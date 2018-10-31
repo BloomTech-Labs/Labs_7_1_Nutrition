@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
-//import AuthService from './authjwt.js';
+
 
 import axios from 'axios';
 const FormItem = Form.Item;
@@ -13,16 +13,15 @@ class Login extends React.Component {
 					password: '',
 				};
 				this.handleChange = this.handleChange.bind(this);
-				//this.handleNewUser = this.handleNewUser.bind(this);
-        this.handleFormSubmit = this.handleFormSubmit.bind(this);
-        //this.Auth = new AuthService();        
+				this.handleLogin = this.handleLogin.bind(this);
+        //this.handleConflictSubmit = this.handleConflictSubmit.bind(this);        
 		}
 		handleChange(e) {
 			this.setState({
 					[e.target.name]: e.target.value,
 			});
 	}
-    handleFormSubmit = (event) => {
+    handleLogin = (event) => {
 				event.preventDefault();
 				const {
 					username,
@@ -65,7 +64,7 @@ class Login extends React.Component {
         return (
             <div>
                 <h2>Sign in here: </h2>
-                <Form onSubmit={(event) => this.handleFormSubmit(
+                <Form onSubmit={(event) => this.handleLogin(
 					event )}>
                     <FormItem label="Username : ">
 												<Input 
@@ -83,10 +82,9 @@ class Login extends React.Component {
 												<Button 
 													type="primary" 
 													htmlType="submit" 
-													// onClick={this.handleNewUser}
 													> 
-													Sign Up
-													</Button>
+													Sign In
+												</Button>
                     </FormItem>
                 </Form>
             </div>

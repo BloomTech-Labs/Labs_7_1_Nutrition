@@ -1,6 +1,5 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
-//import AuthService from './authjwt.js';
 
 import axios from 'axios';
 const FormItem = Form.Item;
@@ -16,14 +15,15 @@ class Login extends React.Component {
 				};
 				this.handleChange = this.handleChange.bind(this);
 				//this.handleNewUser = this.handleNewUser.bind(this);
-        this.handleFormSubmit = this.handleFormSubmit.bind(this);
-        //this.Auth = new AuthService();        
-		}
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);       
+			}
+
 		handleChange(e) {
 			this.setState({
 					[e.target.name]: e.target.value,
 			});
-	}
+		}
+
     handleFormSubmit = (event) => {
 				event.preventDefault();
 				const {
@@ -33,9 +33,10 @@ class Login extends React.Component {
 					email,
 				} = this.state;
 
-				console.log("password:", password);
-				console.log("confirmPassword:",confirmPassword );
-				if(password !== confirmPassword) {
+			console.log("password:", password);
+			console.log("confirmPassword:",confirmPassword );
+			if(password !== confirmPassword)
+			 {
 					alert("Password mismatch. Please try again");
 					this.setState({
 						password: '',
@@ -70,25 +71,14 @@ class Login extends React.Component {
 						confirmPassword: '',
 					});
 				}
-    )
-        // this.Auth.login(this.state.username, this.state.password)
-        // .then(res => {
-        //     this.props.history.replace('/');
-        // })
-        // .catch(err => {
-        //     alert(err);
-        // })
+    	)
     }
-    // componentWillMount() {
-    //     if(this.Auth.loggedIn())
-    //         //this.props.history.replace('/');
-    // }
+
     render() {
         return (
             <div>
                 <h2>Register here: </h2>
-                <Form onSubmit={(event) => this.handleFormSubmit(
-					event )}>
+                <Form onSubmit={(event) => this.handleFormSubmit(event)}>
                     <FormItem label="Username : ">
 												<Input 
 													name="username" 
