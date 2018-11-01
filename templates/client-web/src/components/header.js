@@ -14,7 +14,7 @@ const Headers = () => (
           >
             <Menu.Item key="1">Sign In</Menu.Item>
             <Menu.Item key="2">Sign Up</Menu.Item>
-            {/* <Menu.Item key="3">Settings</Menu.Item> */}
+            <Menu.Item key="3">Logout</Menu.Item>
           </Menu>
         </Header>
 )

@@ -10,7 +10,7 @@ class CustomForm extends React.Component {
 			event.preventDefault();
 			const cookTime= event.target.elements.CookTime.value;
 			const cookingMethod = event.target.elements.CookingMethod.value;
-			console.log(cookingMethod,cookTime); //data gets caught
+			console.log("line number 13",cookingMethod,cookTime); //data gets caught
 			switch ( requestType ) {
 				case 'post':
 	return ( axios.post('http://127.0.0.1:8000/api/recipe/', {
@@ -19,7 +19,7 @@ class CustomForm extends React.Component {
 						CookingMethod: cookingMethod
 					})
 					.then((res) => {console.log("success");})
-          .catch(err => console.log("there was an error"))
+          .catch(err => console.log("Form error at line 22"))
           );
 		
 				case 'put':
@@ -28,7 +28,7 @@ class CustomForm extends React.Component {
 						CookingMethod: cookingMethod
 						})
 						.then(res => console.log(res))
-            .catch(err => console.log(err))
+            .catch(err => console.log("error message:",err))
           );
 			}
  		}
@@ -40,19 +40,19 @@ class CustomForm extends React.Component {
 					this.props.requestType,
 					this.props.ingId )}>
           <FormItem label="Cook Time: ">
-            <Input name="CookTime" placeholder="Give a title to your recipe..." />
+            <Input name="CookTime" placeholder="How long it will take?" />
           </FormItem>
           <FormItem label="Cooking Method: ">
-            <Input name="CookingMethod" placeholder="Cooking instructions goes here..." />
+            <Input name="CookingMethod" placeholder="Baking, steaming, frying..." />
           </FormItem>
 					<FormItem label="Recipe Category: ">
-            <Input name="RecipeCategory" placeholder="Cooking instructions goes here..." />
+            <Input name="RecipeCategory" placeholder="What catogory this recipe comes under?" />
           </FormItem>
 					<FormItem label="Recipe Cuisine: ">
             <Input name="RecipeCuisine" placeholder="So, what cusine is this?..." />
           </FormItem>
 					<FormItem label="Recipe Instructions: ">
-            <Input name="RecipeInstructions" placeholder="Creative instructions goes here..." />
+            <Input name="RecipeInstructions" placeholder="Step by step preperation instructions goes here..." />
           </FormItem>
 					<FormItem label="Recipe Yield: ">
             <Input name="RecipeYield" placeholder="how many in number..." />

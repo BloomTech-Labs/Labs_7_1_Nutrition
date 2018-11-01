@@ -1,28 +1,16 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
-import AuthService from './authjwt.js';
 
-//import axios from 'axios';
-const FormItem = Form.Item;
 
 class Login extends React.Component {
     constructor() {
-        super();
-        this.Auth = new AuthService();        
+        super();  
     }
-    handleFormSubmit = (event) => {
-        event.preventDefault();
-        this.Auth.login(this.state.username, this.state.password)
-        .then(res => {
-            this.props.history.replace('/');
-        })
-        .catch(err => {
-            alert(err);
-        })
-    }
+    
     componentWillMount() {
-        if(this.Auth.loggedIn())
-            this.props.history.replace('/');
+	    localStorage.removeItem('username','');
+        localStorage.removeItem('token', '');
+        this.props.history.push('/login');
     }
     render() {
         return (

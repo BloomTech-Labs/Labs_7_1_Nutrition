@@ -9,22 +9,32 @@ class RecipeList extends React.Component {
         recipes: []
 
     }
-    componentDidMount() {
-        axios.get(`http://127.0.0.1:8000/api/recipe/`)
+    componentDidMount = () => {
+        
+        const username = localStorage.getItem('username');
+        console.log(username);
+        if(username) {
+            axios.get(`http://127.0.0.1:8000/api/recipe/${username}`)
         .then(res => {
-            console.log("Recipelist View: ",res.data);
+            console.log("Recipelist View data: ",res.data);
             this.setState({
                 recipes: res.data
             });
         })
-	    .catch(err => console.log(err));
+	    .catch(err => console.log("recipelist view error:", err));
 		
+        } else {
+            this.props.history.push('/login');
+        }
+        //const token = localStorage.getItem('token');
+        
     }
     render() {
         if(this.state.recipes.length !== 0) {
             // console.log("First row:  ",this.state.recipes[0].CookTime)
             return (
                 <div> 
+                    <h1> Hi, here are the list of recipes you have created.</h1> 
                     <Myrecipes data={this.state.recipes} />
                     <br />
                     <h2>Create recipe</h2>
@@ -39,7 +49,13 @@ class RecipeList extends React.Component {
         else {
             return (
                 <div>  
-                    <h1>Please login to create, edit, view and delete recipes. </h1>
+                    
+                    <h1>Hey there! Looks like you need to create recipes. </h1>
+                    <h2>Create recipe</h2>
+                    <CustomForm 
+                        requestType="post"
+                        ingId={null}
+                        btnText="Create"/>
             </div>
             )
         }

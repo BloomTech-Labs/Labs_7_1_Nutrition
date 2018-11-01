@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
-//import AuthService from './authjwt.js';
+
 
 import axios from 'axios';
 const FormItem = Form.Item;
@@ -13,42 +13,54 @@ class Login extends React.Component {
 					password: '',
 				};
 				this.handleChange = this.handleChange.bind(this);
-				//this.handleNewUser = this.handleNewUser.bind(this);
-        this.handleFormSubmit = this.handleFormSubmit.bind(this);
-        //this.Auth = new AuthService();        
+				this.handleLogin = this.handleLogin.bind(this);
+        //this.handleConflictSubmit = this.handleConflictSubmit.bind(this);        
 		}
 		handleChange(e) {
 			this.setState({
 					[e.target.name]: e.target.value,
 			});
 	}
-    handleFormSubmit = (event) => {
+    handleLogin = (event) => {
 				event.preventDefault();
-				const {
-					username,
-					password,
-				} = this.state;
-
-				console.log("Username, password state: ",this.state);
-        axios.post('http://127.0.0.1:8000/auth/login/', {
-            username,
-            password,
-					})
-        .then((res) => {
-					console.log("success", res.data);
-					localStorage.setItem('token', res.data.jwt);
-					//localStorage.setItem('username', res.data.newUser.name);
-				
-					console.log("after successful axios call", {status: res.status});
-				})
-        .catch(err => {
-					console.log("there was an error", err);
+				if (!this.state.username || !this.state.password) {
+					alert('Please provide username and password');
 					this.setState({
-						password: '',
-						confirmPassword: '',
+						error: true,
+						message: 'Please provide username and password',
 					});
+				} else {
+					const {
+						username,
+						password,
+					} = this.state;
+	
+					console.log("Username, password state: ",this.state);
+					localStorage.setItem('username', this.state.username);
+					axios.post(`http://127.0.0.1:8000/auth/login/`, {
+							username,
+							password,
+						})
+					.then((res) => {
+						console.log("success", res.data);
+						localStorage.setItem('token', res.data.jwt);
+						
+						console.log("just username:", res.data.username);
+						console.log("after successful axios call", {status: res.status});
+						this.setState({
+							error: false,
+						});
+						this.props.history.push('/recipe');
+					})
+					.catch(err => {
+						console.log("there was an error", err);
+						this.setState({
+							password: '',
+						});
+					}
+				)
 				}
-    )
+				
         // this.Auth.login(this.state.username, this.state.password)
         // .then(res => {
         //     this.props.history.replace('/');
@@ -56,16 +68,17 @@ class Login extends React.Component {
         // .catch(err => {
         //     alert(err);
         // })
-    }
+		}
+		
     // componentWillMount() {
     //     if(this.Auth.loggedIn())
     //         //this.props.history.replace('/');
     // }
     render() {
         return (
-            <div>
+            <div >
                 <h2>Sign in here: </h2>
-                <Form onSubmit={(event) => this.handleFormSubmit(
+                <Form onSubmit={(event) => this.handleLogin(
 					event )}>
                     <FormItem label="Username : ">
 												<Input 
@@ -83,10 +96,9 @@ class Login extends React.Component {
 												<Button 
 													type="primary" 
 													htmlType="submit" 
-													// onClick={this.handleNewUser}
 													> 
-													Sign Up
-													</Button>
+													Sign In
+												</Button>
                     </FormItem>
                 </Form>
             </div>
