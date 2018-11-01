@@ -36,7 +36,7 @@ class Login extends React.Component {
 					} = this.state;
 	
 					console.log("Username, password state: ",this.state);
-					localStorage.setItem('username', this.state.username);
+					
 					console.log("Username at local storage: ",localStorage.getItem('username'));
 					axios.post(`http://127.0.0.1:8000/auth/login/`, {
 							username,
@@ -45,7 +45,7 @@ class Login extends React.Component {
 					.then((res) => {
 						console.log("success", res.data);
 						localStorage.setItem('token', res.data.jwt);
-						
+						localStorage.setItem('username', this.state.username);
 						console.log("just username:", res.data.username);
 						console.log("after successful axios call", {status: res.status});
 						this.setState({
@@ -54,6 +54,7 @@ class Login extends React.Component {
 						this.props.history.push('/recipe');
 					})
 					.catch(err => {
+						alert("You need to register before you Sign in");
 						console.log("there was an error", err);
 						this.setState({
 							password: '',
