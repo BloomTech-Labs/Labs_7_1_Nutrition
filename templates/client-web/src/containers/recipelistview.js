@@ -14,14 +14,15 @@ class RecipeList extends React.Component {
         const username = localStorage.getItem('username');
         console.log("In recipe list view username is:",username);
         if(username) {
-            axios.get(`http://127.0.0.1:8000/api/recipe/`)
-        .then(res => {
-            console.log("Recipelist View data: ",res.data);
-            this.setState({
-                recipes: res.data
-            });
-        })
-	    .catch(err => console.log("recipelist view error:", err));
+        //     axios.get(`http://127.0.0.1:8000/api/recipe/`)
+        // .then(res => {
+        //     console.log("Recipelist View data: ",res.data);
+        //     this.setState({
+        //         recipes: res.data
+        //     });
+        // })
+        // .catch(err => console.log("recipelist view error:", err));
+        this.props.history.push('/recipe');
 		
         } else {
             this.props.history.push('/login');
