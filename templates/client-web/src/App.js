@@ -7,8 +7,7 @@ import Footers from './components/footer.js';
 class App extends React.Component {
   render() {
     return(
-      <div>
-        <h1> Don't eat that - Nutrition app </h1>  
+      <div> 
         <Headers />
         <Main />
         <Footers />

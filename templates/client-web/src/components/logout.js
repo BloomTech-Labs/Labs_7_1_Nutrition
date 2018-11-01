@@ -10,7 +10,7 @@ class Login extends React.Component {
     componentWillMount() {
 	    localStorage.removeItem('username','');
         localStorage.removeItem('token', '');
-        this.props.history.push('/login');
+        this.props.history.push('/');
     }
     render() {
         return (

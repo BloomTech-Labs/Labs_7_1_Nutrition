@@ -37,6 +37,7 @@ class Login extends React.Component {
 	
 					console.log("Username, password state: ",this.state);
 					localStorage.setItem('username', this.state.username);
+					console.log("Username at local storage: ",localStorage.getItem('username'));
 					axios.post(`http://127.0.0.1:8000/auth/login/`, {
 							username,
 							password,
@@ -77,9 +78,8 @@ class Login extends React.Component {
     render() {
         return (
             <div >
-                <h2>Sign in here: </h2>
-                <Form onSubmit={(event) => this.handleLogin(
-					event )}>
+                <h2>Login here: </h2>
+                <Form onSubmit={(event) => this.handleLogin(event)}>
                     <FormItem label="Username : ">
 												<Input 
 													name="username" 
