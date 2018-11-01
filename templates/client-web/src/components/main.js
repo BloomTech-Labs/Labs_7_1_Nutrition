@@ -13,7 +13,7 @@ const Main = () => (
         <Switch>
             
             <Route path='/recipe' component={RecipeList} />
-            <Route path='/' component={Login} />
+            <Route path='/' component={Register} />
             <Route path='/login' component={Login} />
             <Route exact path='/register' component={Register} />
             <Route path='/ing/:ingredientid' component={IngredientDetail} />
@@ -22,6 +22,5 @@ const Main = () => (
     </Content>
 
 )
-    
 
 export default Main;
