@@ -41,17 +41,17 @@ class Login extends React.Component {
 					this.setState({
 						password: '',
 						confirmPassword: '',
-						email,
+						email:'',
 					});
 					return;
 				}
-				// //if password comparison fails local state set to be empty. 
-				// 	this.setState({
-				// 		username: '',
-				// 		password: '',
-				// 		confirmPassword: '',
-				// 		// email: '',
-				// 	});
+				//if password comparison fails local state set to be empty. 
+					this.setState({
+						username,
+						password,
+						confirmPassword,
+						email,
+					});
         	axios.post('http://127.0.0.1:8000/auth/register/', {
             			username,
 						password,
@@ -59,6 +59,7 @@ class Login extends React.Component {
 					})
         .then((res) => {
 					console.log("success", res.data);
+					localStorage.setItem('username',username);
 					localStorage.setItem('token', res.data.jwt);
 					//localStorage.setItem('username', res.data.newUser.name);
 					console.log("after successful axios call", {status: res.status});

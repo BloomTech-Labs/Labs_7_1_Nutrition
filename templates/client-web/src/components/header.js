@@ -27,12 +27,16 @@ import { Link, withRouter } from 'react-router-dom';
 const { Header } = Layout;
 class Headers extends React.Component {
   handlelogout = () => {
+    this.props.history.push('/');
     localStorage.removeItem('username','');
     localStorage.removeItem('token', '');
-    this.props.history.push('/');
+    
   }
   render () {
     const username = localStorage.getItem('username');
+    // handleClick = (e) => {
+    //   <Redirect
+    // }
   if(username) {
     return (
       <Header>
@@ -44,7 +48,8 @@ class Headers extends React.Component {
             style={{ lineHeight: '64px' }}
           >
             <Menu.Item key="1">Hi {username}</Menu.Item>
-            <Menu.Item key="3" onClick={this.handlelogout}>Logout</Menu.Item>
+            <Menu.Item key="3"><Link to={"/logout"}>Logout</Link></Menu.Item>
+            {/* onClick={this.handlelogout} */}
           </Menu>
         </Header>
     )
@@ -58,8 +63,8 @@ class Headers extends React.Component {
             defaultSelectedKeys={['2']}
             style={{ lineHeight: '64px' }}
           >
-            <Menu.Item key="1">Sign In</Menu.Item>
-            <Menu.Item key="2">Sign Up</Menu.Item>
+            <Menu.Item key="1"><Link to={"/login"}>Sign In</Link></Menu.Item>
+            <Menu.Item key="2"><Link to={"/register"}>Sign Up</Link></Menu.Item>
           </Menu>
         </Header>
       )
