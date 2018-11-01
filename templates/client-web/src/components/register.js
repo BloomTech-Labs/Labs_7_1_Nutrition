@@ -45,8 +45,15 @@ class Login extends React.Component {
 					});
 					return;
 				}
-        axios.post('http://127.0.0.1:8000/auth/register/', {
-            username,
+				// //if password comparison fails local state set to be empty. 
+				// 	this.setState({
+				// 		username: '',
+				// 		password: '',
+				// 		confirmPassword: '',
+				// 		// email: '',
+				// 	});
+        	axios.post('http://127.0.0.1:8000/auth/register/', {
+            			username,
 						password,
 						email,
 					})
@@ -54,15 +61,8 @@ class Login extends React.Component {
 					console.log("success", res.data);
 					localStorage.setItem('token', res.data.jwt);
 					//localStorage.setItem('username', res.data.newUser.name);
-
-					//if password comparison fails local state set to be empty. 
-					this.setState({
-						username: '',
-						password: '',
-						confirmPassword: '',
-						email: '',
-					});
 					console.log("after successful axios call", {status: res.status});
+					this.props.history.push('/recipe');
 				})
         .catch(err => {
 					console.log("there was an error", err);
@@ -85,26 +85,32 @@ class Login extends React.Component {
 													placeholder="Username..." 
 													onChange={this.handleChange}/>
                     </FormItem>
-										<FormItem label="Password : ">
-												<Input 
-													name="password" 
-													placeholder="Mix of 8 chars, numbers and symbols..." 
-													onChange={this.handleChange}/>
+					<FormItem label="Password : ">
+							<Input 
+								name="password" 
+								placeholder="Mix of 8 chars, numbers and symbols..." 
+								onChange={this.handleChange}/>
                     </FormItem>
                     <FormItem label="Confirm Password : ">
-												<Input 
-													name="confirmPassword" 
-													placeholder="Same as above..." 
-													onChange={this.handleChange}/>
+						<Input 
+							name="confirmPassword" 
+							placeholder="Same as above..." 
+							onChange={this.handleChange}/>
+                    </FormItem>
+					<FormItem label="Email : ">
+						<Input 
+							name="email" 
+							placeholder="Type in valid email..." 
+							onChange={this.handleChange}/>
                     </FormItem>
                     <FormItem>
-												<Button 
-													type="primary" 
-													htmlType="submit" 
-													// onClick={this.handleNewUser}
-													> 
-													Sign Up
-													</Button>
+						<Button 
+							type="primary" 
+							htmlType="submit" 
+							// onClick={this.handleNewUser}
+							> 
+							Sign Up
+							</Button>
                     </FormItem>
                 </Form>
             </div>

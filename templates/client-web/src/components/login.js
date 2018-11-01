@@ -77,9 +77,8 @@ class Login extends React.Component {
     render() {
         return (
             <div >
-                <h2>Sign in here: </h2>
-                <Form onSubmit={(event) => this.handleLogin(
-					event )}>
+                <h2>Login here: </h2>
+                <Form onSubmit={(event) => this.handleLogin(event)}>
                     <FormItem label="Username : ">
 												<Input 
 													name="username" 

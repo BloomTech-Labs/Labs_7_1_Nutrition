@@ -12,9 +12,9 @@ class RecipeList extends React.Component {
     componentDidMount = () => {
         
         const username = localStorage.getItem('username');
-        console.log(username);
+        console.log("In recipe list view username is:",username);
         if(username) {
-            axios.get(`http://127.0.0.1:8000/api/recipe/${username}`)
+            axios.get(`http://127.0.0.1:8000/api/recipe/`)
         .then(res => {
             console.log("Recipelist View data: ",res.data);
             this.setState({
@@ -49,7 +49,6 @@ class RecipeList extends React.Component {
         else {
             return (
                 <div>  
-                    
                     <h1>Hey there! Looks like you need to create recipes. </h1>
                     <h2>Create recipe</h2>
                     <CustomForm 
