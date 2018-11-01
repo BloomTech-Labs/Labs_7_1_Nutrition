@@ -11,7 +11,9 @@ const { Content } = Layout;
 const Main = () => (
     <Content style={{ padding: '0 50px' }}>
         <Switch>
+            
             <Route path='/recipe' component={RecipeList} />
+            <Route path='/' component={Login} />
             <Route path='/login' component={Login} />
             <Route exact path='/register' component={Register} />
             <Route path='/ing/:ingredientid' component={IngredientDetail} />
