@@ -36,14 +36,15 @@ class Login extends React.Component {
 					} = this.state;
 	
 					console.log("Username, password state: ",this.state);
-					axios.post('http://127.0.0.1:8000/auth/login/', {
+					localStorage.setItem('username', this.state.username);
+					axios.post(`http://127.0.0.1:8000/auth/login/`, {
 							username,
 							password,
 						})
 					.then((res) => {
 						console.log("success", res.data);
 						localStorage.setItem('token', res.data.jwt);
-						localStorage.setItem('username', res.data.username);
+						
 						console.log("just username:", res.data.username);
 						console.log("after successful axios call", {status: res.status});
 						this.setState({
@@ -67,7 +68,8 @@ class Login extends React.Component {
         // .catch(err => {
         //     alert(err);
         // })
-    }
+		}
+		
     // componentWillMount() {
     //     if(this.Auth.loggedIn())
     //         //this.props.history.replace('/');

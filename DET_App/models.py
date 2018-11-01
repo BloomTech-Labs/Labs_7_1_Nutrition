@@ -9,8 +9,9 @@ from uuid import uuid4
 class User(models.Model):
     UserID = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     UserEmail = models.CharField(max_length=256, unique=True, blank=False)
-    UserFirstName = models.CharField(max_length=50, blank=False)
-    UserLastName = models.CharField(max_length=50, blank=False)
+    Username   = models.CharField(max_length=50, blank=False)
+    UserFirstName = models.CharField(max_length=50, blank=True)
+    UserLastName = models.CharField(max_length=50, blank=True)
     UserPW = models.CharField(max_length=256, blank=False)
     CustomerID = models.CharField(max_length=256, blank=True)
     Subscription = models.CharField(max_length=256, blank=True)
@@ -28,7 +29,7 @@ class Recipe(models.Model):
     CookTime = models.DurationField()
     CookingMethod = models.CharField(max_length=50)
     Nutrition = models.ForeignKey('NutritionInfo', on_delete=models.CASCADE)
-    RecipeTitle = models.CharField(max_length=50)
+    RecipeTitle = models.CharField(max_length=50, blank=True)
     RecipeCategory = models.CharField(max_length=50)
     RecipeCuisine = models.CharField(max_length=50)
     RecipeIngredients = models.ForeignKey(

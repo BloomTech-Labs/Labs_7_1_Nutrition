@@ -10,9 +10,11 @@ class RecipeList extends React.Component {
 
     }
     componentDidMount = () => {
+        
         const username = localStorage.getItem('username');
-        const token = localStorage.getItem('token');
-        axios.get(`http://127.0.0.1:8000/api/recipe/${username}`)
+        console.log(username);
+        if(username) {
+            axios.get(`http://127.0.0.1:8000/api/recipe/${username}`)
         .then(res => {
             console.log("Recipelist View data: ",res.data);
             this.setState({
@@ -21,6 +23,11 @@ class RecipeList extends React.Component {
         })
 	    .catch(err => console.log("recipelist view error:", err));
 		
+        } else {
+            this.props.history.push('/login');
+        }
+        //const token = localStorage.getItem('token');
+        
     }
     render() {
         if(this.state.recipes.length !== 0) {

@@ -2,26 +2,15 @@ import React from 'react';
 import { Form, Input, Button } from 'antd';
 
 
-//import axios from 'axios';
-const FormItem = Form.Item;
-
 class Login extends React.Component {
     constructor() {
         super();  
     }
-    handleFormSubmit = (event) => {
-        event.preventDefault();
-        this.Auth.login(this.state.username, this.state.password)
-        .then(res => {
-            // this.props.history.replace('/');
-        })
-        .catch(err => {
-            alert(err);
-        })
-    }
+    
     componentWillMount() {
-        if(this.Auth.loggedIn())
-            this.props.history.replace('/');
+	    localStorage.removeItem('username','');
+        localStorage.removeItem('token', '');
+        this.props.history.push('/login');
     }
     render() {
         return (
