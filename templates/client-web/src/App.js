@@ -9,6 +9,7 @@ class App extends React.Component {
     return(
       <div> 
         <Headers />
+        <img src="https://hugtampabay.org/wp-content/uploads/2018/02/healthy-cooking-classes-in-Canada.jpg" alt="cooking-image" />
         <Main />
         <Footers />
      </div>
