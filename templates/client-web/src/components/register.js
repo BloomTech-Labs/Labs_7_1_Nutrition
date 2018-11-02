@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Card, Affix } from 'antd';
 
 import axios from 'axios';
 const FormItem = Form.Item;
@@ -12,6 +12,7 @@ class Login extends React.Component {
 					password: '',
 					confirmPassword: '',
 					email: '',
+					message: 'All fields are required.',
 				};
 				this.handleChange = this.handleChange.bind(this);
 				//this.handleNewUser = this.handleNewUser.bind(this);
@@ -37,12 +38,9 @@ class Login extends React.Component {
 			console.log("confirmPassword:",confirmPassword );
 			if(password !== confirmPassword)
 			 {
-					alert("Password mismatch. Please try again");
-					this.setState({
-						password: '',
-						confirmPassword: '',
-						email:'',
-					});
+				this.setState({
+					message:" Password mismatch",
+			   });
 					return;
 				}
 				//if password comparison fails local state set to be empty. 
@@ -66,24 +64,30 @@ class Login extends React.Component {
 					this.props.history.push('/recipe');
 				})
         .catch(err => {
-					console.log("there was an error", err);
+					
+					console.log("there was an error", err, err.response);
 					this.setState({
-						password: '',
-						confirmPassword: '',
-					});
+						message: err.response.data.message
+				   });
+
+					// this.setState({
+					// 	password: '',
+					// 	confirmPassword: '',
+					// });
 				}
     	)
     }
 
     render() {
         return (
-            <div>
-                <h2>Register here: </h2>
+            <div style={{ background: '#ECECEC', padding: '30px' }}>
+				<div style={{ color: '#990000', padding: '30px', fontSize: '30px' }}>{this.state.message}</div>	
+				<Card title="Register " bordered={false} style={{ width: 350}}>
                 <Form onSubmit={(event) => this.handleFormSubmit(event)}>
                     <FormItem label="Username : ">
 												<Input 
 													name="username" 
-													placeholder="Username..." 
+													placeholder="Username..."
 													onChange={this.handleChange}/>
                     </FormItem>
 					<FormItem label="Password : ">
@@ -114,6 +118,7 @@ class Login extends React.Component {
 							</Button>
                     </FormItem>
                 </Form>
+				</Card>
             </div>
         )
     }
