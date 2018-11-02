@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Card } from 'antd';
 
 
 import axios from 'axios';
@@ -78,8 +78,8 @@ class Login extends React.Component {
     // }
     render() {
         return (
-            <div >
-                <h2>Login here: </h2>
+            <div style={{ background: '#ECECEC', padding: '30px' }}>
+                <Card title="Login" bordered={false} align="center" style={{ width: 350}}>
                 <Form onSubmit={(event) => this.handleLogin(event)}>
                     <FormItem label="Username : ">
 												<Input 
@@ -102,6 +102,7 @@ class Login extends React.Component {
 												</Button>
                     </FormItem>
                 </Form>
+				</Card>
             </div>
         )
     }

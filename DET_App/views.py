@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from django.db.utils import IntegrityError
 
 from rest_framework.response import Response
 from rest_framework.views import status
@@ -55,14 +56,23 @@ class RegisterUsers(generics.CreateAPIView):
         username = request.data.get("username", "")
         password = request.data.get("password", "")
         email = request.data.get("email", "")
-        if not username and not password and not email:
+        if not username or not password or not email:
             return Response(
                 data={
                     "message": "username, password and email is required to register a user"
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
-        new_user = User.objects.create_user(
-            username=username, password=password, email=email
-        )
+        try:
+            new_user = User.objects.create_user(
+                username=username, password=password, email=email
+            )
+        except IntegrityError: 
+            # UNIQUE constraint failed: auth_user.username
+            return Response(
+                data={
+                    "message": "username already exists"
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
         return Response(status=status.HTTP_201_CREATED)
