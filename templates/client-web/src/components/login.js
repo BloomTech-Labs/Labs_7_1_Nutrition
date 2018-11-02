@@ -11,6 +11,7 @@ class Login extends React.Component {
 				this.state = {
 					username: '',
 					password: '',
+					message: 'Registered users can sign in here',
 				};
 				this.handleChange = this.handleChange.bind(this);
 				this.handleLogin = this.handleLogin.bind(this);
@@ -24,10 +25,9 @@ class Login extends React.Component {
     handleLogin = (event) => {
 				event.preventDefault();
 				if (!this.state.username || !this.state.password) {
-					alert('Please provide username and password');
 					this.setState({
 						error: true,
-						message: 'Please provide username and password',
+						message: 'Please provide registered username and password',
 					});
 				} else {
 					const {
@@ -54,7 +54,10 @@ class Login extends React.Component {
 						this.props.history.push('/recipe');
 					})
 					.catch(err => {
-						alert("You need to register before you Sign in");
+						this.setState({
+							message: err.response.data.message,
+					   });
+						// ("You need to register befoalertre you Sign in");
 						console.log("there was an error", err);
 						this.setState({
 							password: '',
@@ -78,28 +81,30 @@ class Login extends React.Component {
     // }
     render() {
         return (
+			
             <div style={{ background: '#ECECEC', padding: '30px' }}>
-                <Card title="Login" bordered={false} align="center" style={{ width: 350}}>
+				<div style={{ color: '#990000', padding: '30px', fontSize: '30px' }}>{this.state.message}</div>
+                <Card title="Login" bordered={false} style={{ width: 350}}>
                 <Form onSubmit={(event) => this.handleLogin(event)}>
                     <FormItem label="Username : ">
-												<Input 
-													name="username" 
-													placeholder="Username..." 
-													onChange={this.handleChange}/>
+						<Input 
+							name="username" 
+							placeholder="Username..." 
+							onChange={this.handleChange}/>
                     </FormItem>
-										<FormItem label="Password : ">
-												<Input 
-													name="password" 
-													placeholder="Mix of 8 chars, numbers and symbols..." 
-													onChange={this.handleChange}/>
-                    </FormItem>
+						<FormItem label="Password : ">
+							<Input 
+								name="password" 
+								placeholder="Mix of 8 chars, numbers and symbols..." 
+								onChange={this.handleChange}/>
+					</FormItem>
                     <FormItem>
-												<Button 
-													type="primary" 
-													htmlType="submit" 
-													> 
-													Sign In
-												</Button>
+						<Button 
+							type="primary" 
+							htmlType="submit" 
+							> 
+							Sign In
+						</Button>
                     </FormItem>
                 </Form>
 				</Card>

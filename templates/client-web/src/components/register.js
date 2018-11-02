@@ -81,7 +81,7 @@ class Login extends React.Component {
     render() {
         return (
             <div style={{ background: '#ECECEC', padding: '30px' }}>
-				<div>{this.state.message}</div>	
+				<div style={{ color: '#990000', padding: '30px', fontSize: '30px' }}>{this.state.message}</div>	
 				<Card title="Register " bordered={false} style={{ width: 350}}>
                 <Form onSubmit={(event) => this.handleFormSubmit(event)}>
                     <FormItem label="Username : ">

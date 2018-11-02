@@ -42,7 +42,13 @@ class LoginView(generics.CreateAPIView):
                 )})
             serializer.is_valid()
             return Response(serializer.data)
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+        return Response(
+                data={
+                    "message": "You are not registered with this username and password"
+                },
+                status=status.HTTP_401_UNAUTHORIZED
+            )
 
 
 class RegisterUsers(generics.CreateAPIView):
