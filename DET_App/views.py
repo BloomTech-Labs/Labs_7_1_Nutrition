@@ -59,7 +59,7 @@ class RegisterUsers(generics.CreateAPIView):
         if not username or not password or not email:
             return Response(
                 data={
-                    "message": "username, password and email is required to register a user"
+                    "message": "Username, Password and Email are required to register as a new user"
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
@@ -71,7 +71,7 @@ class RegisterUsers(generics.CreateAPIView):
             # UNIQUE constraint failed: auth_user.username
             return Response(
                 data={
-                    "message": "username already exists"
+                    "message": "Username already exists"
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
