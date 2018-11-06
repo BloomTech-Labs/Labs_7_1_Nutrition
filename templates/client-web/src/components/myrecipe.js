@@ -2,75 +2,57 @@ import React from 'react';
 import { Table, Card } from 'antd';
 import axios from 'axios';
 import NewReviewModal from '../components/newreview.js';
+import RecipeList from '../containers/recipelistview.js';
 
-// Recipe list page
-
-class MyRecipes extends React.Component {
-  state = {
-    recipes: [
-      {
-        title: 'Suitable For Diet',
-        dataIndex: 'All',
-      }, {
-        title: 'Recipe Category',
-        dataIndex: 'Western',
-      }, {
-        title: 'Recipe Cuisine',
-        dataIndex: 'Italian',
-      }, {
-        title: 'Cooking Time',
-        dataIndex: '30'
-       }, {
-        title: 'Recipe Yield',
-        dataIndex: '4',
-      }, {
-        title: 'Recipe Ingredients',
-        dataIndex: 'RecipeIngredients',
-      }, {
-        title: 'Recipe Instructions',
-        dataIndex: 'RecipeInstructions',
-      }
-    ]
-    // const requestReviewsURL = ''; requestReviewsURL, config
+const config = {
+  headers: {
+    JWT: localStorage.getItem('jwt')
   }
-  
-  // console.log("myrecipe");
-  // const columns = [ {
-  //   title: 'Suitable For Diet',
-  //   dataIndex: 'SuitableForDiet',
-  // }, {
-  //   title: 'Recipe Category',
-  //   dataIndex: 'RecipeCategory',
-  // }, {
-  //   title: 'Recipe Cuisine',
-  //   dataIndex: 'RecipeCuisine',
-  // }, {
-  //   title: 'Cooking Time',
-  //   dataIndex: 'CookTime'
-  //  }, {
-  //   title: 'Recipe Yield',
-  //   dataIndex: 'RecipeYield',
-  // }, {
-  //   title: 'Recipe Ingredients',
-  //   dataIndex: 'RecipeIngredients',
-  // }, {
-  //   title: 'Recipe Instructions',
-  //   dataIndex: 'RecipeInstructions',
-  // }];
-    addRecipe = () => {
-      axios
-      .get()
-      .then(response => {
-        this.setState({ data: { ... this.recipes, recipes: response.data } });
-      })
-      .catch(err => console.log(err.warn));
+};
+class MyRecipes extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {
+        recipes: []
+      }
     };
-    render() {
-      return (
-        // MyRecipes displayed in table form
-        <div>
-          
-          <h1> Here you will see your saved recipes in a table form.</h1>
+  }
+  componentDidMount = () => {
+    const username = localStorage.getItem('username');
+    if(username) {
+          axios.get(`http://127.0.0.1:8000/api/recipe/${username}`)
+      .then(
+        axios.spread(res => {
+          console.log("Recipelist View data: ",res.data);
+          this.setState({
+              recipes: res.data
+          });
+      })
+      )
+      .catch(err => console.log("recipelist view error:", err));
+      this.props.history.push('/recipe');
+  
+      } else {
+          this.props.history.push('/login');
+      }
+      const token = localStorage.getItem('token');
+      
+  }
+  addRecipe = () => {
+    axios
+    .get()
+    .then(response => {
+      this.setState({ data: { ... this.recipes, recipes: response.data } });
+    })
+    .catch(err => console.log(err.warn));
+  };
+
+  render() {
+    <div>
+          <h1> Here you will see your saved recipes.</h1>
+          <h4>If you have recipes under your username, you will be seeing card view</h4>
+          <h4>Otherwise by clicking center of the screen you can add recipes</h4>
           <Table
           itemLayout="vertical"
           size="large"
@@ -86,17 +68,28 @@ class MyRecipes extends React.Component {
           <Card style={{ width: '100px', justifyContent: 'center' }}>
               <div>
                 <h4> Add a new recipe</h4>
-                 {/* <NewReviewModal 
+                 <NewReviewModal 
                   buttonLabel={'+'}
                   addRecipe={this.addRecipe}
-                 /> */}
+                 />
               </div>
           </Card>
+          <Card style={{ width: '100px', justifyContent: 'center' }}>
+              {this.state.data.recipes.map(recipe => {
+                return (
+                  <RecipeList 
+                  {... recipe}
+                  removeReview={this.handleRemove}
+                  />
+                );
+              })}
+          </Card>
         </div>
-   )
+    return (
+      <div>
+        {this.state.data.recipes.length === 0 ? fullScreenView : recipeCardList}
+      </div>
+    )
   }
-    
 }
-
-
 export default MyRecipes;
