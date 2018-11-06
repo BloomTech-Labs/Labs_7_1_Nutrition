@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Card } from 'antd';
+import { Table, Card, Modal, Button } from 'antd';
 import axios from 'axios';
 import NewReviewModal from '../components/newreview.js';
 import RecipeList from '../containers/recipelistview.js';
@@ -41,7 +41,7 @@ class MyRecipes extends React.Component {
   }
   addRecipe = () => {
     axios
-    .get()
+    .get('makes call to backend and get all stored recipes under this username')
     .then(response => {
       this.setState({ data: { ... this.recipes, recipes: response.data } });
     })
@@ -49,11 +49,52 @@ class MyRecipes extends React.Component {
   };
 
   render() {
-    <div>
-          <h1> Here you will see your saved recipes.</h1>
+    const fullScreenView = (
+      <div>
+         <h1> Here you will see your saved recipes.</h1>
           <h4>If you have recipes under your username, you will be seeing card view</h4>
-          <h4>Otherwise by clicking center of the screen you can add recipes</h4>
-          <Table
+          <h4>Otherwise, you can add recipes here</h4>
+          <Card style={{ justifyContent: 'center' }}>
+              <div>
+                <h4> Add a new recipe</h4>
+                 <NewReviewModal 
+                  buttonLabel={'+'}
+                  addRecipe={this.addRecipe}
+                 />
+              </div>
+          </Card>
+      </div>
+    );
+
+    const recipeCardList = (
+      <div>
+      <Card style={{ width: '100px', justifyContent: 'center' }}>
+              <div>
+                <h4> Add a new recipe</h4>
+                 <NewReviewModal 
+                  buttonLabel={'+'}
+                  addRecipe={this.addRecipe}
+                 />
+              </div>
+          </Card>
+          <Card style={{ width: '100px', justifyContent: 'center' }}>
+            <div>
+            {this.state.data.recipes.map(recipe => {
+                return (
+                  <RecipeList 
+                  {... recipe}
+                  removeReview={this.handleRemove}
+                  />
+                );
+              })}
+            </div>
+              
+          </Card>
+        </div>
+    );
+    
+          
+          {/* <Table
           itemLayout="vertical"
           size="large"
           pagination={{
@@ -64,27 +105,8 @@ class MyRecipes extends React.Component {
               }}
           dataSource={this.recipes}
           // columns={columns}
-          />
-          <Card style={{ width: '100px', justifyContent: 'center' }}>
-              <div>
-                <h4> Add a new recipe</h4>
-                 <NewReviewModal 
-                  buttonLabel={'+'}
-                  addRecipe={this.addRecipe}
-                 />
-              </div>
-          </Card>
-          <Card style={{ width: '100px', justifyContent: 'center' }}>
-              {this.state.data.recipes.map(recipe => {
-                return (
-                  <RecipeList 
-                  {... recipe}
-                  removeReview={this.handleRemove}
-                  />
-                );
-              })}
-          </Card>
-        </div>
+          /> */}
+          
     return (
       <div>
         {this.state.data.recipes.length === 0 ? fullScreenView : recipeCardList}
