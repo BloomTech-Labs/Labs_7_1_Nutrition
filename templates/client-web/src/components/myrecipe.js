@@ -1,13 +1,9 @@
 import React from 'react';
-import { List, Table, Card } from 'antd';
-//import Column from 'antd/lib/table/Column';
-//import ColumnGroup from 'antd/lib/table/ColumnGroup';
+import { Table, Card } from 'antd';
+import Axios from 'axios';
 
-
+// Recipe list page
 const Myrecipes = (props) => {
-  console.log("My Recipie :",props.data);
-  //const data = props.data.map(v => { return v.CookingMethod});
-  //console.log("My recipe row:  ",data);
   const columns = [ {
     title: 'Suitable For Diet',
     dataIndex: 'SuitableForDiet',
@@ -30,63 +26,41 @@ const Myrecipes = (props) => {
     title: 'Recipe Instructions',
     dataIndex: 'RecipeInstructions',
   }]
+    addRecipe = () => {
+      axios
+      .get(requestReviewsURL, config)
+      .then(response => {
+        this.setState({ data: { ... this.props.data, recipes: response.data } });
+      })
+      .catch(err => console.log(err.warn));
+    };
     return (
+      // MyRecipes displayed in table form
+      <div>
         
-  // <List
-  //   itemLayout="vertical"
-  //   size="large"
-  //   pagination={{
-  //     onChange: (page) => {
-  //       console.log(page);
-  //     },
-  //     // pageSize: 3,
-  //   }}
-  //   dataSource={items}
-  //   renderItem={item => (
-  //     <List.Item>{item}</List.Item>
-  //     // <List.Item
-  //     //   // key={item.RecipeID}
-  //     //   // actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
-  //     //   // extra={<img width={272} alt="" src="" />}
-  //     // >
-  //     //   <List.Item.Meta
-  //     //     abc="I am here"
-  //     //     cooktime={<a href={item.href}>{item.CookTime}</a>}
-  //     //     cookingmethod={<a href={item.href}>{item.CookingMethod}</a>}
-  //     //   />
-  //     // </List.Item>
-  //   )}
-  // />
-  <div>
-  {/* <List
-  dataSource={data}
-    renderItem={item => (
-      <List.Item>{item}</List.Item>
-    )}
-  /> */}
-  <h1> Here you will see your saved recipes in a table form.</h1>
-  <Table
-  itemLayout="vertical"
-  size="large"
-  pagination={{
-        onChange: (page) => {
-          console.log(page);
-        },
-         pageSize: 3,
-      }}
-  dataSource={props.data}
-  columns={columns}
-  />
-  </div>
-    // <Card
-    //   title="Card title"
-    //   extra={<a href="#">More</a>}
-    //   style={{ width: 300 }}
-    // >
-    //   <p>Card content</p>
-    //   <p>Card content</p>
-    //   <p>Card content</p>
-    // </Card>
+        <h1> Here you will see your saved recipes in a table form.</h1>
+        <Table
+        itemLayout="vertical"
+        size="large"
+        pagination={{
+              onChange: (page) => {
+                console.log(page);
+              },
+              pageSize: 3,
+            }}
+        dataSource={props.data}
+        columns={columns}
+        />
+        <Card style={{ width: '100px', justifyContent: 'center' }}>
+            <div>
+              <h4> Add a new recipe</h4>
+               <NewReviewModal 
+                buttonLabel={'+'}
+                addRecipe={this.addRecipe}
+               />
+            </div>
+        </Card>
+      </div>
  )
 }
 
