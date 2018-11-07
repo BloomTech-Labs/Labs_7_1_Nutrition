@@ -6,8 +6,6 @@ name = "pypi"
 [packages]
 python-decouple = "*"
 django-cors-headers = "*"
-djangorestframework = "*"
-Django = "*"
 dj-database-url = "*"
 gunicorn = "*"
 "psycopg2-binary" = "*"
@@ -17,6 +15,8 @@ djangorestframework-jwt = "*"
 pyjwt = "*"
 django-webpack-loader = "*"
 django-filter = "*"
+django = "*"
+djangorestframework = "*"
 
 [dev-packages]
 coverage = "*"
