@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import (
-    Recipe, NutritionInfo, Ingredients, User
+    Recipe, Ingredients, User
 )
 
 # Register your models here.

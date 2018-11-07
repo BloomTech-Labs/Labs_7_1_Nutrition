@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'DET_App',
     'rest_framework',
     'webpack_loader',
+    'django_usda',
     'django.contrib.sites',
     'rest_framework.authtoken',
     'django.contrib.admin',
@@ -137,6 +138,12 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'rest_framework_filters.backends.DjangoFilterBackend',
+    ),
+    'PAGINATE_BY': 250,
+    'PAGINATE_BY_PARAM': 'page_size',
+    'MAX_PAGINATE_BY': 250
 }
 
 # Internationalization

@@ -23,6 +23,35 @@ from django.views.generic import TemplateView
 
 from Dont_Eat_That import settings
 from rest_framework import routers
+from django.contrib import admin
+
+from django_usda.modelviewsets import FoodViewSet, FoodGroupViewSet, FoodLanguaLFactorViewSet, LanguaLFactorViewSet, NutrientDataViewSet, NutrientViewSet, SourceViewSet, DerivationViewSet, WeightViewSet, FootnoteViewSet, DataLinkViewSet, DataSourceViewSet, FoodInfoViewSet
+
+admin.autodiscover()
+
+router = routers.DefaultRouter()
+
+router.register(r'foods', 				FoodViewSet)
+router.register(r'foodgroups', 			FoodGroupViewSet)
+router.register(r'foodlangualfactors', 	FoodLanguaLFactorViewSet)
+router.register(r'langualfactors', 		LanguaLFactorViewSet)
+router.register(r'nutrientdatas', 		NutrientDataViewSet)
+router.register(r'nutrients', 			NutrientViewSet)
+router.register(r'sources', 			SourceViewSet)
+router.register(r'derivations', 		DerivationViewSet)
+router.register(r'weights', 			WeightViewSet)
+router.register(r'footnotes', 			FootnoteViewSet)
+router.register(r'datalinks', 			DataLinkViewSet)
+router.register(r'datasources', 		DataSourceViewSet)
+router.register(r'foodinfo', 			FoodInfoViewSet)
+
+urlpatterns = patterns('',
+    url(r'^', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^demo/', 'demo.views.index'),
+)
+
 from DET_App.api import RecipeViewSet, IngredientsViewSet, TokenSerializer
 from DET_App.views import LoginView, RegisterUsers
 
@@ -30,6 +59,23 @@ from DET_App.views import LoginView, RegisterUsers
 # To add route, We register it here with the 'r' <- regex and we will not need to add them to urlpatterns
 router = routers.DefaultRouter()
 
+# usda db urls
+router.register(r'foods', 				FoodViewSet)
+router.register(r'foodgroups', 			FoodGroupViewSet)
+router.register(r'foodlangualfactors', 	FoodLanguaLFactorViewSet)
+router.register(r'langualfactors', 		LanguaLFactorViewSet)
+router.register(r'nutrientdatas', 		NutrientDataViewSet)
+router.register(r'nutrients', 			NutrientViewSet)
+router.register(r'sources', 			SourceViewSet)
+router.register(r'derivations', 		DerivationViewSet)
+router.register(r'weights', 			WeightViewSet)
+router.register(r'footnotes', 			FootnoteViewSet)
+router.register(r'datalinks', 			DataLinkViewSet)
+router.register(r'datasources', 		DataSourceViewSet)
+router.register(r'foodinfo', 			FoodInfoViewSet)
+
+
+# models url
 router.register(r'recipe', RecipeViewSet)
 router.register(r'ingredients', IngredientsViewSet)
 
@@ -38,9 +84,7 @@ TODO: Routes will need to be edited to show the proper names for pages, but for 
 '''
 
 admin.autodiscover()
-'''
-TODO: Debug... The Django backend may be rendering faster than the React app?
-'''
+
 urlpatterns = [
     # ADMIN Routes
     path('admin/', admin.site.urls),
