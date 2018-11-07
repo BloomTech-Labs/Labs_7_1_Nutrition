@@ -1,93 +1,116 @@
 import React from 'react';
-import { List, Table, Card } from 'antd';
-//import Column from 'antd/lib/table/Column';
-//import ColumnGroup from 'antd/lib/table/ColumnGroup';
+import { Table, Card, Modal, Button } from 'antd';
+import axios from 'axios';
+import NewReviewModal from '../components/newreview.js';
+import RecipeList from '../containers/recipelistview.js';
 
+const config = {
+  headers: {
+    JWT: localStorage.getItem('jwt')
+  }
+};
+class MyRecipes extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {
+        recipes: []
+      }
+    };
+  }
+  componentDidMount = () => {
+    const username = localStorage.getItem('username');
+    // if(username) {
+    //       axios.get(`http://127.0.0.1:8000/api/recipe/${username}`)
+    //   .then(
+    //     axios.spread(res => {
+    //       console.log("My Recipe page get reuest success data: ",res.data);
+    //       this.setState({
+    //           recipes: res.data
+    //       });
+    //   })
+    //   )
+    //   .catch(err => console.log("Myrecipe page get request error:", err));
+    //   this.props.history.push('/recipe');
+  
+    //   } else {
+    //       this.props.history.push('/login');
+    //   }
+      const token = localStorage.getItem('token');
+      
+  }
+  addRecipe = () => {
+    axios
+    .get('makes call to backend and get all stored recipes under this username')
+    .then(response => {
+      this.setState({ data: { ...this.recipes, recipes: response.data } });
+    })
+    .catch(err => console.log(err.warn));
+  };
 
-const Myrecipes = (props) => {
-  console.log("My Recipie :",props.data);
-  //const data = props.data.map(v => { return v.CookingMethod});
-  //console.log("My recipe row:  ",data);
-  const columns = [ {
-    title: 'Suitable For Diet',
-    dataIndex: 'SuitableForDiet',
-  }, {
-    title: 'Recipe Category',
-    dataIndex: 'RecipeCategory',
-  }, {
-    title: 'Recipe Cuisine',
-    dataIndex: 'RecipeCuisine',
-  }, {
-    title: 'Cooking Time',
-    dataIndex: 'CookTime'
-   }, {
-    title: 'Recipe Yield',
-    dataIndex: 'RecipeYield',
-  }, {
-    title: 'Recipe Ingredients',
-    dataIndex: 'RecipeIngredients',
-  }, {
-    title: 'Recipe Instructions',
-    dataIndex: 'RecipeInstructions',
-  }]
+  render() {
+    const fullScreenView = (
+      <div>
+         <h1> Here you will see your saved recipes</h1>
+          <h4>If you have recipes under your username, you will be seeing card view</h4>
+          <h4>Otherwise, you can add recipes here</h4>
+          <Card style={{ justifyContent: 'center' }}>
+              <div>
+                 <NewReviewModal 
+                  buttonLabel={'+'}
+                  addRecipe={this.addRecipe}
+                 />
+              </div>
+          </Card>
+      </div>
+    );
+
+    const recipeCardList = (
+      <div>
+      <Card style={{ width: '100px', justifyContent: 'center' }}>
+              <div>
+                <h4> Add a new recipe</h4>
+                 <NewReviewModal 
+                  buttonLabel={'+'}
+                  addRecipe={this.addRecipe}
+                 />
+              </div>
+          </Card>
+          <Card style={{ width: '100px', justifyContent: 'center' }}>
+            <div>
+            {this.state.data.recipes.map(recipe => {
+                return (
+                  <RecipeList 
+                  {... recipe}
+                  removeReview={this.handleRemove}
+                  />
+                );
+              })}
+            </div>
+              
+          </Card>
+        </div>
+    );
+    
+          
+          {/* <Table
+          itemLayout="vertical"
+          size="large"
+          pagination={{
+                onChange: (page) => {
+                  console.log(page);
+                },
+                pageSize: 3,
+              }}
+          dataSource={this.recipes}
+          // columns={columns}
+          /> */}
+          
     return (
-        
-  // <List
-  //   itemLayout="vertical"
-  //   size="large"
-  //   pagination={{
-  //     onChange: (page) => {
-  //       console.log(page);
-  //     },
-  //     // pageSize: 3,
-  //   }}
-  //   dataSource={items}
-  //   renderItem={item => (
-  //     <List.Item>{item}</List.Item>
-  //     // <List.Item
-  //     //   // key={item.RecipeID}
-  //     //   // actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
-  //     //   // extra={<img width={272} alt="" src="" />}
-  //     // >
-  //     //   <List.Item.Meta
-  //     //     abc="I am here"
-  //     //     cooktime={<a href={item.href}>{item.CookTime}</a>}
-  //     //     cookingmethod={<a href={item.href}>{item.CookingMethod}</a>}
-  //     //   />
-  //     // </List.Item>
-  //   )}
-  // />
-  <div>
-  {/* <List
-  dataSource={data}
-    renderItem={item => (
-      <List.Item>{item}</List.Item>
-    )}
-  /> */}
-  <h1> Here you will see your saved recipes in a table form.</h1>
-  <Table
-  itemLayout="vertical"
-  size="large"
-  pagination={{
-        onChange: (page) => {
-          console.log(page);
-        },
-         pageSize: 3,
-      }}
-  dataSource={props.data}
-  columns={columns}
-  />
-  </div>
-    // <Card
-    //   title="Card title"
-    //   extra={<a href="#">More</a>}
-    //   style={{ width: 300 }}
-    // >
-    //   <p>Card content</p>
-    //   <p>Card content</p>
-    //   <p>Card content</p>
-    // </Card>
- )
+      <div>
+        {this.state.data.recipes.length === 0 ? fullScreenView : recipeCardList}
+      </div>
+    )
+  }
 }
-
-export default Myrecipes;
+export default MyRecipes;

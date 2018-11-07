@@ -19,10 +19,10 @@ class Headers extends React.Component {
           <Menu
             theme="dark"
             mode="horizontal"
-            defaultSelectedKeys={['2']}
             style={{ lineHeight: '64px' }}
           >
             <Menu.Item key="1">Hi {username}</Menu.Item>
+            <Menu.Item key="2"><Link to={"/recipe"}>My Recipes</Link></Menu.Item>
             <Menu.Item key="3"><Link to={"/logout"}>Logout</Link></Menu.Item>
             {/* onClick={this.handlelogout} */}
           </Menu>
@@ -35,7 +35,6 @@ class Headers extends React.Component {
           <Menu
             theme="dark"
             mode="horizontal"
-            defaultSelectedKeys={['2']}
             style={{ lineHeight: '64px' }}
           >
             <Menu.Item key="1"><Link to={"/login"}>Sign In</Link></Menu.Item>

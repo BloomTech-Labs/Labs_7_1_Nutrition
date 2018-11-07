@@ -33,49 +33,47 @@ class Login extends React.Component {
 					confirmPassword,
 					email,
 				} = this.state;
-
+				console.log("username:", username);
 			console.log("password:", password);
 			console.log("confirmPassword:",confirmPassword );
 			if(password !== confirmPassword)
 			 {
 				this.setState({
-					message:" Password mismatch",
+					message:" Password mismatch"
 			   });
 					return;
 				}
-				//if password comparison fails local state set to be empty. 
 					this.setState({
 						username,
 						password,
 						confirmPassword,
 						email,
 					});
-        	axios.post('http://127.0.0.1:8000/auth/register/', {
-            			username,
-						password,
-						email,
-					})
-        .then((res) => {
-					console.log("success", res.data);
-					localStorage.setItem('username',username);
-					localStorage.setItem('token', res.data.jwt);
-					//localStorage.setItem('username', res.data.newUser.name);
-					console.log("after successful axios call", {status: res.status});
-					this.props.history.push('/recipe');
-				})
-        .catch(err => {
+					localStorage.setItem('username', this.state.username);
+					this.props.history.push('/recipe'); // this line will be there till axios not post to backend.
+        	// axios.post('http://127.0.0.1:8000/auth/register/', {
+            // 			username,
+			// 			password,
+			// 			email,
+			// 		})
+        	// .then((res) => {
+			// 		console.log("success", res.data);
+			// 		localStorage.setItem('username',username);
+			// 		localStorage.setItem('token', res.data.jwt);
+			// 		//localStorage.setItem('username', res.data.newUser.name);
+			// 		console.log("after successful axios call", {status: res.status});
+			// 		this.props.history.push('/recipe');
+			// 	})
+        	// .catch(err => {
 					
-					console.log("there was an error", err, err.response);
-					this.setState({
-						message: err.response.data.message
-				   });
-
-					// this.setState({
-					// 	password: '',
-					// 	confirmPassword: '',
-					// });
-				}
-    	)
+			// 		console.log("there was an error", err, err.response);
+			// 		console.log("No data returned from backend.that is the above error");
+			// 		this.setState({
+						
+			// 			// message: err.response.data.message
+			// 	   });
+			// 	}
+    	//)
     }
 
     render() {
@@ -112,7 +110,7 @@ class Login extends React.Component {
 						<Button 
 							type="primary" 
 							htmlType="submit" 
-							// onClick={this.handleNewUser}
+							//onClick={this.handleNewUser}
 							> 
 							Sign Up
 							</Button>

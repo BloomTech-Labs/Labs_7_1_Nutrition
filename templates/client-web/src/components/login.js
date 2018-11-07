@@ -11,7 +11,7 @@ class Login extends React.Component {
 				this.state = {
 					username: '',
 					password: '',
-					message: 'Registered users can sign in here',
+					message: 'Registered users can sign in here.',
 				};
 				this.handleChange = this.handleChange.bind(this);
 				this.handleLogin = this.handleLogin.bind(this);
@@ -38,7 +38,7 @@ class Login extends React.Component {
 					console.log("Username, password state: ",this.state);
 					
 					console.log("Username at local storage: ",localStorage.getItem('username'));
-					axios.post(`http://127.0.0.1:8000/auth/login/`, {
+					axios.post(`/auth/login/`, {
 							username,
 							password,
 						})
@@ -51,7 +51,10 @@ class Login extends React.Component {
 						this.setState({
 							error: false,
 						});
-						this.props.history.push('/recipe');
+						if(username) {
+							this.props.history.push('/recipe');
+						}
+						
 					})
 					.catch(err => {
 						this.setState({
@@ -73,12 +76,7 @@ class Login extends React.Component {
         // .catch(err => {
         //     alert(err);
         // })
-		}
-		
-    // componentWillMount() {
-    //     if(this.Auth.loggedIn())
-    //         //this.props.history.replace('/');
-    // }
+	}
     render() {
         return (
 			
