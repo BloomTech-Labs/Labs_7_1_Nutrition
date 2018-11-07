@@ -23,15 +23,15 @@ from django.views.generic import TemplateView
 
 from Dont_Eat_That import settings
 from rest_framework import routers
-from DET_App.api import RecipeViewSet, IngredientsViewSet, NutritionInfoViewSet, TokenSerializer
+from DET_App.api import RecipeViewSet, IngredientsViewSet, TokenSerializer
 from DET_App.views import LoginView, RegisterUsers
 
 # Routers provide a way to set up URL conf.
 # To add route, We register it here with the 'r' <- regex and we will not need to add them to urlpatterns
 router = routers.DefaultRouter()
+
 router.register(r'recipe', RecipeViewSet)
 router.register(r'ingredients', IngredientsViewSet)
-router.register(r'nutritionInfo', NutritionInfoViewSet)
 
 '''
 TODO: Routes will need to be edited to show the proper names for pages, but for now, it renders each schema
@@ -48,13 +48,6 @@ urlpatterns = [
     path('auth/login/', LoginView.as_view(), name="auth-login"),
     path('auth/register/', RegisterUsers.as_view(), name="auth-register"),
     re_path('.*', TemplateView.as_view(template_name='index.html')),
-
-    # React URLs
-    # add landingpage... One line
-    # path('', RedirectView.as_view(url='', permanent=True)) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
-
-    # React-Native URLs
-    # path('', RedirectView.as_view(url='', permanent=True)) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT),
 ]
 
 # Add Django site authentication urls (for login, logout, password management)

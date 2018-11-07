@@ -1,5 +1,5 @@
 from rest_framework import serializers, viewsets
-from .models import Recipe, Ingredients, NutritionInfo, User
+from .models import Recipe, Ingredients, User
 from rest_framework import permissions
 
 '''
@@ -49,26 +49,6 @@ End Ingredients
 '''
 
 '''
-NutritionInfo
-'''
-
-
-class NutritionInfoSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = NutritionInfo
-        fields = '__all__'
-
-
-class NutritionInfoViewSet(viewsets.ModelViewSet):
-    queryset = NutritionInfo.objects.all()
-    serializer_class = NutritionInfoSerializer
-
-
-'''
-End NutritionalInfo
-'''
-
-'''
 Start Token
 '''
 
@@ -88,7 +68,7 @@ Start User
 
 class UserSerializer(serializers.Serializer):
     class Meta:
-        model = NutritionInfo
+        model = User
         fields = '__all__'
 
 

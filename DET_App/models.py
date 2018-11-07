@@ -45,40 +45,17 @@ class Recipe(models.Model):
         verbose_name_plural = 'recipes'
 
 
-# class RecipeIngredients_id(models.Model):
-#     Recipe_id = models.ForeignKey('Recipe', on_delete=models.CASCADE)
-#     Ingredients_id = models.ForeignKey('Ingredient', on_delete=models.CASCADE)
-
-class NutritionInfo(models.Model):
-    Calories = models.IntegerField()
-    CarbohydrateContent = models.IntegerField()
-    CholesterolContent = models.IntegerField()
-    FatContent = models.IntegerField()
-    FiberContent = models.IntegerField()
-    ProteinContent = models.IntegerField()
-    SaturatedFatContent = models.IntegerField()
-    SodiumContent = models.IntegerField()
-    SugarContent = models.IntegerField()
-    TransFatContent = models.IntegerField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        db_table = 'NutritionInfo'
-        verbose_name_plural = 'nutritionInfo'
-
-
 class Ingredients(models.Model):
-    IngredientID: models.UUIDField(
-        primary_key=True, default=uuid4, editable=False)
-    Quantity = models.IntegerField()
-    Measurement = models.CharField(max_length=25)
-    Item = models.CharField(max_length=25)
-    NutritionInfo = models.ForeignKey(
-        'NutritionInfo', on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
-
+    ndbno = models.IntegerField()
+    name = models.CharField(max_length=100)
+    measure = models.CharField(max_length=100)
+    nutrients = models.CharField(max_length=100)
+    nutrient_id = models.CharField(max_length=100)
+    unit = models.CharField(max_length=100)
+    gm = models.IntegerField()
+    value = models.IntegerField()
+    
+    
     class Meta:
         db_table = 'Ingredients'
         verbose_name_plural = 'ingredients'
