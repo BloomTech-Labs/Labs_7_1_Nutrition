@@ -37,16 +37,11 @@ class NewReviewModal extends React.Component {
           Add a new recipe
         </Button>
         <Modal
+          footer = {null}
           visible={visible}
           title="Title"
           onOk={this.handleOk}
           onCancel={this.handleCancel}
-          footer={[
-            <Button key="back" onClick={this.handleCancel}>Return</Button>,
-            <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
-              Submit
-            </Button>,
-          ]}
         >
           <CustomForm />
         </Modal>

@@ -43,7 +43,7 @@ class MyRecipes extends React.Component {
     axios
     .get('makes call to backend and get all stored recipes under this username')
     .then(response => {
-      this.setState({ data: { ... this.recipes, recipes: response.data } });
+      this.setState({ data: { ...this.recipes, recipes: response.data } });
     })
     .catch(err => console.log(err.warn));
   };
@@ -51,7 +51,7 @@ class MyRecipes extends React.Component {
   render() {
     const fullScreenView = (
       <div>
-         <h1> Here you will see your saved recipes.</h1>
+         <h1> Here you will see your saved recipes</h1>
           <h4>If you have recipes under your username, you will be seeing card view</h4>
           <h4>Otherwise, you can add recipes here</h4>
           <Card style={{ justifyContent: 'center' }}>
