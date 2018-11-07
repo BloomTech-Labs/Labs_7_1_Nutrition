@@ -38,7 +38,7 @@ class Login extends React.Component {
 					console.log("Username, password state: ",this.state);
 					
 					console.log("Username at local storage: ",localStorage.getItem('username'));
-					axios.post(`http://127.0.0.1:8000/auth/login/`, {
+					axios.post(`/auth/login/`, {
 							username,
 							password,
 						})

@@ -4,11 +4,14 @@ import { Modal, Button } from 'antd';
 import CustomForm from '../components/form.js';
 
 class NewReviewModal extends React.Component {
-    
-    state = {
-        loading: false,
-        visible: false
+    constructor(props) {
+        super(props)
+        this.state = {
+            loading: false,
+            visible: false
+        }
     }
+    
     showModal = () => {
         this.setState({
           visible: true,
@@ -16,7 +19,7 @@ class NewReviewModal extends React.Component {
       }
   
     handleOk = () => {
-        this.setState({ loading: true });
+            this.props.history.push('/recipe')
       }
       
     handleCancel = () => {
@@ -29,9 +32,9 @@ class NewReviewModal extends React.Component {
         const { visible, loading } = this.state;
     return (
       <div>
-          <h1>Loaded</h1>
+          
         <Button type="primary" onClick={this.showModal}>
-          Open Modal with customized footer
+          Add a new recipe
         </Button>
         <Modal
           visible={visible}
@@ -45,11 +48,7 @@ class NewReviewModal extends React.Component {
             </Button>,
           ]}
         >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+          <CustomForm />
         </Modal>
       </div>
     );

@@ -20,22 +20,22 @@ class MyRecipes extends React.Component {
   }
   componentDidMount = () => {
     const username = localStorage.getItem('username');
-    if(username) {
-          axios.get(`http://127.0.0.1:8000/api/recipe/${username}`)
-      .then(
-        axios.spread(res => {
-          console.log("Recipelist View data: ",res.data);
-          this.setState({
-              recipes: res.data
-          });
-      })
-      )
-      .catch(err => console.log("recipelist view error:", err));
-      this.props.history.push('/recipe');
+    // if(username) {
+    //       axios.get(`http://127.0.0.1:8000/api/recipe/${username}`)
+    //   .then(
+    //     axios.spread(res => {
+    //       console.log("My Recipe page get reuest success data: ",res.data);
+    //       this.setState({
+    //           recipes: res.data
+    //       });
+    //   })
+    //   )
+    //   .catch(err => console.log("Myrecipe page get request error:", err));
+    //   this.props.history.push('/recipe');
   
-      } else {
-          this.props.history.push('/login');
-      }
+    //   } else {
+    //       this.props.history.push('/login');
+    //   }
       const token = localStorage.getItem('token');
       
   }
@@ -56,7 +56,6 @@ class MyRecipes extends React.Component {
           <h4>Otherwise, you can add recipes here</h4>
           <Card style={{ justifyContent: 'center' }}>
               <div>
-                <h4> Add a new recipe</h4>
                  <NewReviewModal 
                   buttonLabel={'+'}
                   addRecipe={this.addRecipe}

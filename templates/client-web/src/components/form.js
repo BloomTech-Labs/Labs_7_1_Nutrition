@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, TextArea } from 'antd';
 import axios from 'axios';
 
 const FormItem = Form.Item;
@@ -31,7 +31,8 @@ class CustomForm extends React.Component {
             .catch(err => console.log("error message:",err))
           );
 			}
- 		}
+     }
+    
   render() {
     return (
       <div>
@@ -46,13 +47,13 @@ class CustomForm extends React.Component {
             <Input name="CookingMethod" placeholder="Baking, steaming, frying..." />
           </FormItem>
 					<FormItem label="Recipe Category: ">
-            <Input name="RecipeCategory" placeholder="What catogory this recipe comes under?" />
+            <Input name="RecipeCuisine" placeholder="Baking, steaming, frying ..." />
           </FormItem>
 					<FormItem label="Recipe Cuisine: ">
             <Input name="RecipeCuisine" placeholder="So, what cusine is this?..." />
           </FormItem>
 					<FormItem label="Recipe Instructions: ">
-            <Input name="RecipeInstructions" placeholder="Step by step preperation instructions goes here..." />
+          <Input name="RecipeInstructions" placeholder="Step by step preperation instructions goes here..." />
           </FormItem>
 					<FormItem label="Recipe Yield: ">
             <Input name="RecipeYield" placeholder="how many in number..." />
