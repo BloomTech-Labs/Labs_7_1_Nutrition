@@ -17,6 +17,7 @@ django-webpack-loader = "*"
 django-filter = "*"
 django = "*"
 djangorestframework = "*"
+requests = "*"
 
 [dev-packages]
 coverage = "*"

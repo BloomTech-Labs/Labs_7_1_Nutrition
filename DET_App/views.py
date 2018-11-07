@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.db.utils import IntegrityError
+from django.shortcuts import render
 
 from rest_framework.response import Response
 from rest_framework.views import status
@@ -8,6 +9,10 @@ from rest_framework_jwt.settings import api_settings
 from rest_framework import permissions, generics
 
 from .api import TokenSerializer, UserSerializer
+from .models import Ingredients
+from Dont_Eat_That.settings import NDB_API_KEY
+
+import requests
 
 # Create your views here.
 
@@ -82,3 +87,16 @@ class RegisterUsers(generics.CreateAPIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
         return Response(status=status.HTTP_201_CREATED)
+
+
+
+# def NDBRequest(request):
+#     """
+#     NDB API request
+#     """
+#     ndbno = Ingredients.ndbno
+#     url = 'https://api.nal.usda.gov/ndb/reports?'
+    
+#     res = requests.get(url+ndbno+'type=b'+format=json+NDB_API_KEY)
+#     ingredientInfo = response.json()
+#     return render(request, )
