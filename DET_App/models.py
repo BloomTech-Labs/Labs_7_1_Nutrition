@@ -48,9 +48,9 @@ class Recipe(models.Model):
 Recipe TODO
 TODO: For the Ingredient tab, it will need to render quantity, measurement and name
 TODO: Quantity will need to be a user inputField that will multiply the nutrients rendered by the amount entered
-
+TODO: Recipe may need more ingredientfields to parse information too...
 """
-# 
+
 class Ingredients(models.Model):
     ndbno = models.IntegerField()
     name = models.CharField(max_length=255)
