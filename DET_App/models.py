@@ -44,14 +44,20 @@ class Recipe(models.Model):
         db_table = 'Recipe'
         verbose_name_plural = 'recipes'
 
+"""
+Recipe TODO
+TODO: For the Ingredient tab, it will need to render quantity, measurement and name
+TODO: Quantity will need to be a user inputField that will multiply the nutrients rendered by the amount entered
 
+"""
+# 
 class Ingredients(models.Model):
     ndbno = models.IntegerField()
-    name = models.CharField(max_length=100)
-    measure = models.CharField(max_length=100)
-    nutrients = models.CharField(max_length=100)
-    nutrient_id = models.CharField(max_length=100)
-    unit = models.CharField(max_length=100)
+    name = models.CharField(max_length=255)
+    measure = models.CharField(max_length=255)
+    nutrients = models.CharField(max_length=255)
+    nutrient_id = models.CharField(max_length=255)
+    unit = models.CharField(max_length=255)
     gm = models.IntegerField()
     value = models.IntegerField()
     
@@ -60,4 +66,5 @@ class Ingredients(models.Model):
         db_table = 'Ingredients'
         verbose_name_plural = 'ingredients'
 
-# editable when we discuss how the user accounts will look. For now it gives recipe's for each user
+
+
