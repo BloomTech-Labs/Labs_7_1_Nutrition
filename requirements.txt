@@ -1,6 +1,0 @@
-django
-python-decouple
-django-cors-headers
-gunicorn
-dj-database-url
-
