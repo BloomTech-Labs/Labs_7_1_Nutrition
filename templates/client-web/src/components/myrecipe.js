@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Card, Modal, Button } from 'antd';
 import axios from 'axios';
-import NewReviewModal from '../components/newreview.js';
+import NewReviewModal from './newrecipe.js';
 import RecipeList from '../containers/recipelistview.js';
 
 const config = {

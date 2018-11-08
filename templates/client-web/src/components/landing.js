@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageContainer from './containers/imageContainer.js';
+import ImageContainer from '../containers/imageContainer.js';
 //import { Avatar } from 'antd';
 
 

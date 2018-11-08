@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Modal, Button } from 'antd';
-import CustomForm from '../components/form.js';
+import CustomForm from './form.js';
 
 class NewReviewModal extends React.Component {
     constructor(props) {
@@ -39,7 +39,7 @@ class NewReviewModal extends React.Component {
         <Modal
           footer = {null}
           visible={visible}
-          title="Title"
+          title="New Recipe"
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
