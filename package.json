@@ -60,7 +60,8 @@
     "start": "node templates/client-web/scripts/start.js",
     "build": "node templates/client-web/scripts/build.js",
     "test": "node templates/client-web/scripts/test.js",
-    "postinstall": "yarn --cwd templates/client-web/scripts run build"
+    "postinstall": "yarn --cwd templates/client-web/scripts run build",
+    "collectstatic": "./manage.py collectstatic"
   },
   "engines": {
     "node": "11.0.0",

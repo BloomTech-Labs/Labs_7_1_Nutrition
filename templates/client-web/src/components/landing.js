@@ -1,5 +1,5 @@
 import React from 'react';
-
+import ImageContainer from './containers/imageContainer.js';
 //import { Avatar } from 'antd';
 
 
@@ -15,7 +15,7 @@ class Landing extends React.Component {
         return (
             <div >
                 <h1>Don't eat that --->Choose Nutrition App</h1>
-                <img alt="Landing page image comes here" src="../image/cooking-food-ginger.jpg" height="400px" width="500px" />
+                <ImageContainer />
             </div>
         )
     }
