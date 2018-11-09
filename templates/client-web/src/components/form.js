@@ -31,7 +31,7 @@ class CustomForm extends React.Component {
 		handleFormSubmit = (event, requestType, ingId) => {
 			event.preventDefault();
 			
-			console.log("line number 13",this.state.cookingMethod,cookTime); //data gets caught
+			console.log("line number 13",this.state.cookingMethod,this.state.cookTime); //data gets caught
 			// switch ( requestType ) {
       //   case 'post':
       //   return(
@@ -47,7 +47,7 @@ class CustomForm extends React.Component {
         suitableForDiet,
         } = this.state;
 
-      axios.post('/api/recipe/', {
+      axios.post('http://localhost:8000/api/recipe/', {
         recipeTitle,
         cookTime,
         cookingMethod,

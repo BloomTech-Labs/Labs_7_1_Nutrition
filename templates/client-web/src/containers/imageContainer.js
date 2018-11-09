@@ -1,5 +1,18 @@
 import React from 'react';
-import { Table, Card, Modal, Button } from 'antd';
 
-import landingImage from '../image/spices.jpg';
 
+import landingImage from '../image/spices.png';
+
+// const background = {
+//     background-image: `url(${landingImage})`,
+// };
+
+class ImageContainer extends React.Component {
+    render() {
+        return (
+            <div style={{ background:`url(${landingImage}) no-repeat fixed center`, backgroundSize: 'cover', height: '900px' }}>
+            </div>
+        );
+    }
+}
+export default ImageContainer;

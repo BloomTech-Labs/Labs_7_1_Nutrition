@@ -10,7 +10,7 @@ import { Layout } from 'antd';
 
 const { Content } = Layout;
 const Main = () => (
-    <Content style={{ padding: '0 50px', height:'900px'}}>
+    <Content style={{ padding: '0 50px', height: '100vh'}}>
         <Switch>
             <Route exact path='/' component={Landing} />
             <Route path='/recipe' component={Myrecipe} />

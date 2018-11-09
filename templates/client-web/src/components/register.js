@@ -50,30 +50,32 @@ class Login extends React.Component {
 						email,
 					});
 					localStorage.setItem('username', this.state.username);
-					this.props.history.push('/recipe'); // this line will be there till axios not post to backend.
-        	// axios.post('http://127.0.0.1:8000/auth/register/', {
-            // 			username,
-			// 			password,
-			// 			email,
-			// 		})
-        	// .then((res) => {
-			// 		console.log("success", res.data);
-			// 		localStorage.setItem('username',username);
-			// 		localStorage.setItem('token', res.data.jwt);
-			// 		//localStorage.setItem('username', res.data.newUser.name);
-			// 		console.log("after successful axios call", {status: res.status});
-			// 		this.props.history.push('/recipe');
-			// 	})
-        	// .catch(err => {
+					//this.props.history.push('/recipe'); // this line will be there till axios not post to backend.
+        	axios.post('http://127.0.0.1:8000/auth/register/', {
+            			username,
+						password,
+						email,
+					})
+        	.then((res) => {
+					console.log("success", res.data);
+					//send this username and jwt to check in db then store into local storage
+					localStorage.setItem('username',username);
+					localStorage.setItem('token', res.data.jwt);
 					
-			// 		console.log("there was an error", err, err.response);
-			// 		console.log("No data returned from backend.that is the above error");
-			// 		this.setState({
+					//localStorage.setItem('username', res.data.newUser.name);
+					console.log("after successful axios call", {status: res.status});
+					this.props.history.push('/recipe');
+				})
+        	.catch(err => {
+					
+					console.log("there was an error", err, err.response);
+					console.log("No data returned from backend.that is the above error");
+					this.setState({
 						
-			// 			// message: err.response.data.message
-			// 	   });
-			// 	}
-    	//)
+						// message: err.response.data.message
+				   });
+				}
+    	)
     }
 
     render() {
