@@ -37,13 +37,14 @@ class Login extends React.Component {
 	
 					console.log("Username, password state: ",this.state);
 					
-					console.log("Username at local storage: ",localStorage.getItem('username'));
-					axios.post(`/auth/login/`, {
+					console.log("Username at local storage: ",localStorage.getItem(username));
+					axios.post(`http://127.0.0.1:8000/auth/login/`, {
 							username,
 							password,
 						})
 					.then((res) => {
-						console.log("success", res.data);
+						console.log("Username at local storage in success: ",localStorage.getItem(username));
+						console.log("success", res);
 						localStorage.setItem('token', res.data.jwt);
 						localStorage.setItem('username', this.state.username);
 						console.log("just username:", res.data.username);
@@ -57,6 +58,7 @@ class Login extends React.Component {
 						
 					})
 					.catch(err => {
+						console.log("Username at local storage in error: ",localStorage.getItem(username));
 						this.setState({
 							message: err.response.data.message,
 					   });

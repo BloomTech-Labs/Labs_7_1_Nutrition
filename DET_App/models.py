@@ -26,14 +26,15 @@ class User(models.Model):
 class Recipe(models.Model):
     RecipeID = models.UUIDField(
         primary_key=True, default=uuid4, editable=False)
-    CookTime = models.DurationField()
+    CookTime = models.CharField(max_length=50)
     CookingMethod = models.CharField(max_length=50)
-    Nutrition = models.CharField(max_length=100)
+    # Nutrition = models.CharField(max_length=100)
     RecipeTitle = models.CharField(max_length=50, blank=True)
     RecipeCategory = models.CharField(max_length=50)
     RecipeCuisine = models.CharField(max_length=50)
-    RecipeIngredients = models.ForeignKey(
-        'Ingredients', on_delete=models.CASCADE)
+    # RecipeIngredients = models.ForeignKey(
+    #     'Ingredients', on_delete=models.CASCADE)
+    RecipeIngredients = models.CharField(max_length=100)
     RecipeInstructions = models.TextField()
     RecipeYield = models.IntegerField()
     SuitableForDiet = models.CharField(max_length=50)

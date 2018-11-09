@@ -1,6 +1,6 @@
 import React from 'react';
-
-//import { Avatar } from 'antd';
+import ImageContainer from '../containers/imageContainer.js';
+import { Menu } from 'antd';
 
 
 class Landing extends React.Component {
@@ -12,10 +12,10 @@ class Landing extends React.Component {
        }
    }
     render() {
+        // localStorage.setItem('username',this.state.username);
         return (
             <div >
-                <h1>Don't eat that --->Choose Nutrition App</h1>
-                <img alt="Landing page image comes here" src="../image/cooking-food-ginger.jpg" height="400px" width="500px" />
+                <ImageContainer />  
             </div>
         )
     }

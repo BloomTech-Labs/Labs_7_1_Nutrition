@@ -1,14 +1,14 @@
 import React from 'react';
 import { Table, Card, Modal, Button } from 'antd';
 import axios from 'axios';
-import NewReviewModal from '../components/newreview.js';
+import NewReviewModal from './newrecipe.js';
 import RecipeList from '../containers/recipelistview.js';
 
-const config = {
-  headers: {
-    JWT: localStorage.getItem('jwt')
-  }
-};
+// const config = {
+//   headers: {
+//     JWT: localStorage.getItem('jwt')
+//   }
+// };
 class MyRecipes extends React.Component {
   constructor(props) {
     super(props);
@@ -18,25 +18,35 @@ class MyRecipes extends React.Component {
       }
     };
   }
-  componentDidMount = () => {
-    const username = localStorage.getItem('username');
-    // if(username) {
-    //       axios.get(`http://127.0.0.1:8000/api/recipe/${username}`)
-    //   .then(
-    //     axios.spread(res => {
-    //       console.log("My Recipe page get reuest success data: ",res.data);
-    //       this.setState({
-    //           recipes: res.data
-    //       });
-    //   })
-    //   )
-    //   .catch(err => console.log("Myrecipe page get request error:", err));
-    //   this.props.history.push('/recipe');
   
-    //   } else {
-    //       this.props.history.push('/login');
-    //   }
-      const token = localStorage.getItem('token');
+  componentDidMount = () => {
+    const token = localStorage.getItem('jwt');
+    const username = localStorage.getItem('username');
+    if(username) {
+      axios ({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/api/recipe/',
+        data: {
+          'username': username,
+          'jwt': token
+        }
+      })
+          
+      .then(
+        axios.spread(res => {
+          console.log("My Recipe page get reuest success data: ",res);
+          this.setState({
+              recipes: res.data
+          });
+      })
+      )
+      .catch(err => console.log("Myrecipe page get request error:", err));
+      this.props.history.push('/recipe');
+  
+      } else {
+          this.props.history.push('/login');
+      }
+      // console.log(localStorage.getItem('token')
       
   }
   addRecipe = () => {

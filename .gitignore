@@ -4,6 +4,9 @@ db.sqlite3
 node_modules/
 psql.sh
 
+#static files
+staticfiles/
+
 # Environments
 .env
 

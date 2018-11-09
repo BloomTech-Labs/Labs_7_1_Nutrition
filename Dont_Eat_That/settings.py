@@ -20,6 +20,7 @@ from decouple import config
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 print("base dir path", BASE_DIR)
 
+CORS_ORIGIN_ALLOW_ALL = True
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -176,7 +177,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'templates/client-web/build/static'),
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+
 
 # SITE ID
 SITE_ID = 1

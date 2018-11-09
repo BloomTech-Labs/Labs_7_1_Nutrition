@@ -9,9 +9,12 @@ class CustomForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      recipeTitle: '',
       cookTime: '',
       cookingMethod: '',
+      recipeCategory: '',
       recipeCuisine: '',
+      recipeIngredients: '',
       recipeInstructions: '',
       recipeYield: '',
       suitableForDiet: '',
@@ -28,24 +31,29 @@ class CustomForm extends React.Component {
 		handleFormSubmit = (event, requestType, ingId) => {
 			event.preventDefault();
 			
-			console.log("line number 13",this.state.cookingMethod,cookTime); //data gets caught
+			console.log("line number 13",this.state.cookingMethod,this.state.cookTime); //data gets caught
 			// switch ( requestType ) {
       //   case 'post':
       //   return(
         const {
-          cookTime,
+        recipeTitle,
+        cookTime,
         cookingMethod,
+        recipeCategory,
         recipeCuisine,
+        recipeIngredients,
         recipeInstructions,
         recipeYield,
         suitableForDiet,
         } = this.state;
-        
-      axios.post('/api/recipe/', {
-  
+
+      axios.post('http://localhost:8000/api/recipe/', {
+        recipeTitle,
         cookTime,
         cookingMethod,
+        recipeCategory,
         recipeCuisine,
+        recipeIngredients,
         recipeInstructions,
         recipeYield,
         suitableForDiet,
@@ -80,6 +88,9 @@ class CustomForm extends React.Component {
         <Form onSubmit={(event) => this.handleFormSubmit(
           event)}>
           {/* this.props.requestType,this.props.ingId these two parameters addon when create serves as edit. */}
+          <FormItem label="Recipe Title">
+            <Input name="RecipeTitle" placeholder="Recipe Title" onChange={this.handleChange} />
+          </FormItem>
           <FormItem label="Cook Time: ">
             <Input name="CookTime" placeholder="How long it will take?" onChange={this.handleChange} />
           </FormItem>
@@ -87,10 +98,13 @@ class CustomForm extends React.Component {
             <Input name="CookingMethod" placeholder="Baking, steaming, frying..." onChange={this.handleChange} />
           </FormItem>
 					<FormItem label="Recipe Category: ">
-            <Input name="RecipeCuisine" placeholder="Baking, steaming, frying ..." onChange={this.handleChange} />
+            <Input name="RecipeCategory" placeholder="Baking, steaming, frying ..." onChange={this.handleChange} />
           </FormItem>
 					<FormItem label="Recipe Cuisine: ">
             <Input name="RecipeCuisine" placeholder="So, what cusine is this?..." onChange={this.handleChange} />
+          </FormItem>
+          <FormItem label=" Recipe Ingredients: ">
+          <Input name="RecipeIngredients" placeholder="Step by step preperation instructions goes here..." onChange={this.handleChange} />
           </FormItem>
 					<FormItem label="Recipe Instructions: ">
           <Input name="RecipeInstructions" placeholder="Step by step preperation instructions goes here..." onChange={this.handleChange} />
@@ -100,12 +114,6 @@ class CustomForm extends React.Component {
           </FormItem>
 					<FormItem label="Suitable For Diet: ">
             <Input name="SuitableForDiet" placeholder="Suitable For what Diet..." onChange={this.handleChange} />
-          </FormItem>
-          <FormItem label="Nutrition ">
-            <Input name="Nutrition" placeholder="Dropdown will show up" onChange={this.handleChange} />
-          </FormItem>
-          <FormItem label="Recipe Ingredients: ">
-            <Input name="RecipeIngredients" placeholder="Ingredients goes here..." onChange={this.handleChange} />
           </FormItem>
           <FormItem>
             <Button type="primary" htmlType="submit">Create Recipe</Button>
