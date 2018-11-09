@@ -45,43 +45,27 @@ class Recipe(models.Model):
         db_table = 'Recipe'
         verbose_name_plural = 'recipes'
 
-
-# class RecipeIngredients_id(models.Model):
-#     Recipe_id = models.ForeignKey('Recipe', on_delete=models.CASCADE)
-#     Ingredients_id = models.ForeignKey('Ingredient', on_delete=models.CASCADE)
-
-class NutritionInfo(models.Model):
-    Calories = models.IntegerField()
-    CarbohydrateContent = models.IntegerField()
-    CholesterolContent = models.IntegerField()
-    FatContent = models.IntegerField()
-    FiberContent = models.IntegerField()
-    ProteinContent = models.IntegerField()
-    SaturatedFatContent = models.IntegerField()
-    SodiumContent = models.IntegerField()
-    SugarContent = models.IntegerField()
-    TransFatContent = models.IntegerField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        db_table = 'NutritionInfo'
-        verbose_name_plural = 'nutritionInfo'
-
+"""
+Recipe TODO
+TODO: For the Ingredient tab, it will need to render quantity, measurement and name
+TODO: Quantity will need to be a user inputField that will multiply the nutrients rendered by the amount entered
+TODO: Recipe may need more ingredientfields to parse information too...
+"""
 
 class Ingredients(models.Model):
-    IngredientID: models.UUIDField(
-        primary_key=True, default=uuid4, editable=False)
-    Quantity = models.IntegerField()
-    Measurement = models.CharField(max_length=25)
-    Item = models.CharField(max_length=25)
-    NutritionInfo = models.ForeignKey(
-        'NutritionInfo', on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
-
+    ndbno = models.IntegerField()
+    name = models.CharField(max_length=255)
+    measure = models.CharField(max_length=255)
+    nutrients = models.CharField(max_length=255)
+    nutrient_id = models.CharField(max_length=255)
+    unit = models.CharField(max_length=255)
+    gm = models.IntegerField()
+    value = models.IntegerField()
+    
+    
     class Meta:
         db_table = 'Ingredients'
         verbose_name_plural = 'ingredients'
 
-# editable when we discuss how the user accounts will look. For now it gives recipe's for each user
+
+

@@ -5,7 +5,7 @@ node_modules/
 psql.sh
 
 #static files
-.staticfiles
+staticfiles/
 
 # Environments
 .env

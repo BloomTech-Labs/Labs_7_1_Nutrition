@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.db.utils import IntegrityError
+from django.shortcuts import render
 
 from rest_framework.response import Response
 from rest_framework.views import status
@@ -8,6 +9,9 @@ from rest_framework_jwt.settings import api_settings
 from rest_framework import permissions, generics
 
 from .api import TokenSerializer, UserSerializer
+
+
+import requests
 
 # Create your views here.
 
